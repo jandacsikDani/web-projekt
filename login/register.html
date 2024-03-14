@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Document</title>
 </head>
 <body>
@@ -30,25 +29,28 @@
     </header>
     <main>
         <div class="form-container">
-            <p class="title">Bejelentekzés</p>
+            <p class="title">Regisztráció</p>
             <form class="form">
                 <div class="input-group">
                     <label for="username">Felhasználónév</label>
                     <input type="text" name="username" id="username" placeholder="">
                 </div>
                 <div class="input-group">
-                    <label for="password">Jelszó</label>
-                    <input type="password" name="password" id="password" placeholder="">
-                    <div class="forgot">
-                        <a rel="noopener noreferrer" href="#">Elfelejtett jelszó</a>
-                    </div>
+                    <label for="email">Email cím</label>
+                    <input type="text" name="email" id="email" placeholder="">
                 </div>
-                <button class="sign">Bejelentekzés</button>
+                <div class="input-group">
+                    <label for="password">Jelszó</label>
+                    <input type="password" name="password" id="password" placeholder="Jelszó">
+                    <label for="passwords">Jelszó</label>
+                    <input type="password" name="passwords" id="password" placeholder="Jelszó mégegygszer">
+                </div>
+                <button class="sign">Registrálok</button>
             </form>
             <br>
             
-            <p class="signup">Nincs még fiókod? 
-                <a rel="noopener noreferrer" href="register.html" class="">Regisztráció</a>
+            <p class="signup">Van már fiókod?
+                <a rel="noopener noreferrer" href="index.html" class="">Jelentkezz be!</a>
             </p>
         </div>
     </main>
