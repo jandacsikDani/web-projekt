@@ -1,0 +1,181 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;   
+    
+}
+
+body{
+    background-color: #10141E;
+    
+}
+
+.header{
+    background: linear-gradient(135deg, #9732A7, #067E94 ) ;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    padding: 20px 85px;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+
+.logo{
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar{
+    align-items: center;
+    display: flex;
+    
+    
+}
+
+.navbar a{
+    position: relative;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+
+}
+
+.navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: .4s;
+
+}
+
+.navbar a:hover::before{
+    width: 100%;
+
+}
+
+.pages{
+    
+    margin-right: 200px;
+}
+
+.search{
+    
+    width: max-content;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 28px;
+    background-color: white;
+    color: #067E94;
+    transition: background 0.25s;
+}
+
+.search:focus-within{
+    background: whitesmoke;
+}
+
+.search-input{
+    color: #067E94;
+    font-size: 16px;
+    margin-left: 12px;
+    outline: none;
+    border: none;
+    background: transparent;
+    
+
+}
+
+.search-input::placeholder{
+    color: #067E94;
+
+}
+
+main{
+    padding-top: 85px;
+    color: white;
+}
+
+.categories {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center; 
+}
+
+.categories ul {
+    list-style: none; 
+    padding: 0; 
+}
+
+.categories ul li {
+    
+    display: inline;
+    margin: 3px; 
+}
+
+.genre-btns{
+    font-weight: bold;
+    width: max-content;
+    padding: 10px;
+    color: white;
+    outline: none;
+    border-radius: 28px;
+    border-style: none;
+    background-color: #1E293B;
+    cursor: pointer;
+}
+.genre-btns:hover {
+    background-color: #067E94;
+}
+
+#catergories-title{
+    padding-top: 25px;
+    display: block;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    color: #93C5FD;
+}
+
+.movies {
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+.movie-item {
+    text-align: center;
+}
+
+.movie-item img {
+    border-radius: 10px;
+    height: 250px;
+    width: auto;
+}
+.movie-item p {
+    margin-top: 10px; 
+    font-weight: bold;
+}
+
+.movies td {
+    padding: 15px 20px;
+}
+
+
+
+
+
+
+
