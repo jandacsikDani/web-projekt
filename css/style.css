@@ -9,6 +9,7 @@
 
 body{
     background-color: #10141E;
+    overflow-x: hidden;
 }
 
 .header{
@@ -170,10 +171,3 @@ main{
 .movies td {
     padding: 15px 20px;
 }
-
-
-
-
-
-
-
