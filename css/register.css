@@ -32,7 +32,7 @@
     margin-bottom: 4px;
 }
 
-.input-group:not(:first-of-type) div:first-of-type{
+.input-group div:first-of-type{
     margin-right: 1rem;
 }
 

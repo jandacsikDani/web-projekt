@@ -34,8 +34,6 @@ body{
 .navbar{
     align-items: center;
     display: flex;
-    
-    
 }
 
 .navbar a{
@@ -45,7 +43,7 @@ body{
     color: white;
     text-decoration: none;
     margin-left: 20px;
-
+    cursor: pointer;
 }
 
 .navbar a::before{
