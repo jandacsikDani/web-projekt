@@ -1,0 +1,19 @@
+main{
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+#profile > div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 2vw;
+}
+#profilepic{
+    width: 15vw;
+}
+#profile div:nth-child(2){
+    width: inherit;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}

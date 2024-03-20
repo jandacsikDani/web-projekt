@@ -171,3 +171,7 @@ main{
 .movies td {
     padding: 15px 20px;
 }
+
+#logout{
+    display: none;
+}

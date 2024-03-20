@@ -1,11 +1,12 @@
 function checkCookie() {
-    console.log(getCookie("username"));
     let username = getCookie("username");
     if (username != "") {
         document.getElementById("profile").innerHTML = "Saját profilom";
         document.getElementById("profile").setAttribute("href", "profile.html");
+        document.getElementById("logout").style.display = "block";
     }
 }
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

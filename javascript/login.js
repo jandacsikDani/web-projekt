@@ -5,7 +5,6 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 function signin(){
-    //window.location.href = "../index.html";
+    window.location.href = "../index.html";
     setCookie('username', 'asd',1);
-    console.log("asd");
 }
