@@ -2,8 +2,7 @@ function checkCookie() {
     let username = getCookie("username");
     if (username != "") {
         document.getElementById("profile").innerHTML = "Saját profilom";
-        document.getElementById("profile").setAttribute("href", "profile.html");
-        document.getElementById("logout").style.display = "block";
+        document.getElementById("profile").setAttribute("href", "oldalak/profil.html");
     }
 }
 
@@ -36,5 +35,5 @@ function deleteCookie(cname) {
 
 function logout(){
     deleteCookie("username");
-    window.location.replace("index.html");
+    window.location.replace("../");
 }
