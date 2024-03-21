@@ -1,0 +1,117 @@
+main{
+    
+    padding-left: 85px;
+    padding-right: 85px;
+    padding-bottom: 55px;
+
+}
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align items at the bottom of the container */
+    margin-top: 40px;
+    height: 500px;   
+    background-image: url('../kepek/drive-2.jpg'); /* Replace 'background-image.jpg' with your image file */
+    background-position: center;
+    background-size: cover; /* Cover the entire container with the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    padding: 35px; /* Add padding to give space around the text */
+    color: white; /* Set text color to white for better contrast */
+    padding-bottom: 25px;
+    
+    
+  }
+
+
+
+.intro-title{
+    margin-left: 0;
+    font-size: 50px;
+    font-weight: bold;
+    
+    
+    
+}
+
+.fa-star{
+    margin-top: 7px;
+    font-size: 23px;
+}
+
+.unchecked{
+    
+    opacity: 0.5
+}
+.checked {
+    color: #9732A7;
+  }
+
+  .intro-categories{
+    margin-top: 15px;
+  }
+
+  .genre{
+    font-size: 15px;
+    background-color: rgba(17, 24, 39, 1);
+    padding: 5px;
+    margin-right: 3px;
+  }
+
+  .intro-trailer{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .fa-play-circle{
+    margin-right: 10px ;
+    text-decoration: none;
+    color: #9732A7;
+    font-size: 55px;
+  }
+
+  .watch{
+    
+    font-size: 20px;
+    
+  }
+
+  .desc-title{
+    font-weight: bold;
+    color: #9732A7;
+    font-size: 27px;
+    padding-top: 35px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+  }
+
+  .desc-script{
+    width: 65%;
+    font-size: 17px;
+    padding-left: 5px;
+  }
+
+  .similair-title{
+    font-weight: bold;
+    color: #9732A7;
+    font-size: 27px;
+    margin-top: 35px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+  }
+
+  .similair-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+}
+
+.similair-list li {
+    margin-left: 20px;
+    display: inline; /* Display list items inline */
+    
+}
+
+.similair-list img{
+    height: 220px;
+    width: auto;
+}

@@ -9,10 +9,10 @@
 
 body{
     background-color: #10141E;
-    overflow-x: hidden;
 }
 
 .header{
+    z-index: 1000;
     background: linear-gradient(135deg, #9732A7, #067E94 ) ;
     position: fixed;
     align-items: center;
@@ -34,6 +34,8 @@ body{
 .navbar{
     align-items: center;
     display: flex;
+    
+    
 }
 
 .navbar a{
@@ -43,7 +45,7 @@ body{
     color: white;
     text-decoration: none;
     margin-left: 20px;
-    cursor: pointer;
+
 }
 
 .navbar a::before{
@@ -86,7 +88,7 @@ body{
 }
 
 .search-input{
-    color: #067E94;
+    
     font-size: 16px;
     margin-left: 12px;
     outline: none;
@@ -130,9 +132,9 @@ main{
     color: white;
     outline: none;
     border-radius: 28px;
-    border-style: none;
     background-color: #1E293B;
     cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 .genre-btns:hover {
     background-color: #067E94;
@@ -145,6 +147,7 @@ main{
     font-size: 23px;
     font-weight: bold;
     color: #93C5FD;
+
 }
 
 .movies {
@@ -154,6 +157,8 @@ main{
 
 .movie-item {
     text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 .movie-item img {
@@ -161,15 +166,20 @@ main{
     height: 250px;
     width: auto;
 }
+
 .movie-item p {
     margin-top: 10px; 
     font-weight: bold;
+    
 }
 
 .movies td {
     padding: 15px 20px;
 }
 
-#logout{
-    display: none;
-}
+
+
+
+
+
+
