@@ -10,24 +10,32 @@
     <script src="javascript/main.js"></script>
 </head>
 <body onload="checkCookie()">
-    <header class="header">
-        <a href="#" class="logo">FFórum</a>
+    <header>
+    <a href="#" class="logo">FFórum</a>
         <nav class="navbar">
-            
-                <div class="pages">
-                    <a href="#">Kezdőlap</a>
-                    <a href="#">Értékelések</a>
-                    <a href="#">Felhasználók</a>
-                    <a href="oldalak/login.html" id="profile">Bejelentkezés</a>
-                </div>
-
-                <div class="search">
-                    <span class="search-icon material-symbols-outlined">search</span>
-                    <input class="search-input" type="search" placeholder="Keresés">
-                </div>
-                
-            
-        </nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Kezdőlap</a>
+                </li>
+                <li class="nav-item">
+                    <a href="oldalak/review.html" class="nav-link">Értékelések</a>
+                </li>
+                <li class="nav-item">
+                    <a href="oldalak/profiles.html" class="nav-link">Felhasználók</a>
+                </li>
+                <li class="nav-item">
+                    <a href="oldalak/login.html" class="nav-link" id="profile">Bejelentkezés</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <!--<div class="search">
+                <span class="search-icon material-symbols-outlined">search</span>
+                <input class="search-input" type="search" placeholder="Keresés">
+            </div>-->
     </header>
 
     <main>
