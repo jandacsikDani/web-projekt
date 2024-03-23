@@ -8,15 +8,15 @@ main{
 .intro {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Align items at the bottom of the container */
+    justify-content: flex-end; 
     margin-top: 40px;
     height: 500px;   
-    background-image: url('../kepek/drive-2.jpg'); /* Replace 'background-image.jpg' with your image file */
+    background-image: url('../kepek/drive-2.jpg'); 
     background-position: center;
-    background-size: cover; /* Cover the entire container with the background image */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    padding: 35px; /* Add padding to give space around the text */
-    color: white; /* Set text color to white for better contrast */
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    padding: 35px; 
+    color: white; 
     padding-bottom: 25px;
     
     
@@ -101,13 +101,13 @@ main{
   }
 
   .similair-list {
-    list-style: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
+    list-style: none; 
+    padding: 0; 
 }
 
 .similair-list li {
     margin-left: 20px;
-    display: inline; /* Display list items inline */
+    display: inline; 
     
 }
 

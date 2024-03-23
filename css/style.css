@@ -88,6 +88,11 @@ li{
     .nav-menu.active{
         left: 0;
     }
+
+   
+
+    
+    
 }
 
 .logo{
@@ -186,6 +191,7 @@ main{
     
     display: inline;
     margin: 3px; 
+    
 }
 
 .genre-btns{
@@ -214,6 +220,7 @@ main{
 }
 
 .movies {
+    width: 100%;
     margin: 30px auto;
     border-collapse: collapse;
 }
@@ -239,6 +246,81 @@ main{
 .movies td {
     padding: 15px 20px;
 }
+
+
+@media screen and (max-width: 1391px) {
+    
+    .movies tr{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        
+    }
+
+    .movies td{
+        text-align: center;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+    .movies tr{
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        
+    }
+
+    .movies td{
+        text-align: center;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 560px) {
+    
+    .movies tr{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        
+    }
+
+    .movies td{
+        text-align: center;
+    }
+
+    .genre-btns{
+        margin-bottom: 6px;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 392px) {
+    
+    .movies tr{
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        
+    }
+
+    .movies td{
+        text-align: center;
+    }
+
+    
+}
+
+
+
+
+
+
+
 
 
 
