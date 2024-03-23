@@ -4,7 +4,8 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-function signin(){
+
+document.querySelector(".sign").addEventListener("click", () => {
     window.location.href = "../";
     setCookie('username', 'asd',1);
-}
+})

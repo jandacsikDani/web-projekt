@@ -3,13 +3,14 @@ main{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .profile{
     display: flex;
     flex-direction: row;
     border-radius: 10px;
-    width: 15vw;
-    height: 6vw;
+    width: 250px;
+    height: 120px;
     background: linear-gradient(135deg, #067E94, #9732A7);
     transition: box-shadow 0.3s ease;
     margin-left: 4vw;
@@ -37,7 +38,7 @@ main{
     justify-content: center;
 }
 .profile img{
-    width: 5vw;
+    width: 100px;
     object-fit: contain;
     padding: 10px;
 }
@@ -48,10 +49,4 @@ main{
     justify-content: space-evenly;
     width: inherit;
     height: inherit;
-}
-
-@media(max-width:1220px){
-    .profile{
-        flex: auto auto auto auto;
-    }
 }
