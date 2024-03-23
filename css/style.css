@@ -240,17 +240,17 @@ main{
 
 
 
-/* Media query for smaller screens */
+
 @media only screen and (max-width: 768px) {
     .movie-cell {
-        flex-basis: calc(33.33% - 10px); /* Adjust the width for smaller screens */
+        flex-basis: calc(33.33% - 10px); 
     }
 }
 
-/* Media query for even smaller screens */
+
 @media only screen and (max-width: 480px) {
     .movie-cell {
-        flex-basis: calc(50% - 10px); /* Adjust the width for even smaller screens */
+        flex-basis: calc(50% - 10px); 
     }
 }
 
