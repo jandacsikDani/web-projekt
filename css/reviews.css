@@ -241,7 +241,7 @@ textarea {
 
 .comment-submit:hover {
   background: linear-gradient(135deg, #9732A7, #067E94);
-    box-shadow: 0 0 5px rgba(255, 255, 255);
+  box-shadow: 0 0 5px rgba(255, 255, 255);
 }
 
 
@@ -307,6 +307,14 @@ textarea {
   border-radius: 0.375rem;
   font-weight: 600;
 }
+
+.rating-submit:hover {
+  background: linear-gradient(135deg, #9732A7, #067E94);
+  box-shadow: 0 0 5px rgba(255, 255, 255);
+}
+
+
+
 
 
 
