@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <title>Profil</title>
@@ -10,6 +10,7 @@
     <script src="../javascript/main.js"></script>
     <script src="../javascript/menu.js" defer></script>
     <script src="../javascript/profil.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
 
 </head>
 <body>
@@ -21,7 +22,7 @@
                     <a href="../index.html" class="nav-link">Kezdőlap</a>
                 </li>
                 <li class="nav-item">
-                    <a href="review.html" class="nav-link">Értékelések</a>
+                    <a href="ertekelesek.html" class="nav-link">Értékelések</a>
                 </li>
                 <li class="nav-item">
                     <a href="profiles.html" class="nav-link">Felhasználók</a>
