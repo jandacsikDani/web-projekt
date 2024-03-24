@@ -64,15 +64,15 @@ function viewProfile(profileId){
 }
 
 function temp(){
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 48; i++) {
         var nev = "felhasználónév";
-        var valami = "Teljes név";
+        var valami = "teljesnév";
 
         // Profil generálása
         var profileDiv = document.createElement("div");
         profileDiv.classList.add("profile");
         profileDiv.setAttribute("id", i);
-        //profileDiv.setAttribute("onclick", "viewProfile(this.id)");
+        profileDiv.setAttribute("onclick", "viewProfile(this.id)");
 
         var imgDiv = document.createElement("div");
         var img = document.createElement("img");
