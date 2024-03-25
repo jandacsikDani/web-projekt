@@ -230,7 +230,7 @@ main{
     margin-top: 35px;
     margin-left: 15px;
     margin-right: 15px;
-    
+    cursor: pointer;
     
 }
 
@@ -263,7 +263,6 @@ main{
 .movie-item p {
     margin-top: 10px; 
     font-weight: bold;
-    
 }
 
 

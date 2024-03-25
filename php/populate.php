@@ -46,7 +46,7 @@ $felhasznalonevek = array(
 
 for ($i=0; $i < 100; $i++) {
     $passwd = random_bytes(10);
-    $sql = "INSERT INTO `users`(`id`, `username`, `fullname`, `password`, `token`, `joindate`) VALUES ('','$felhasznalonevek[$i]','$nevek[$i]','','','');";
+    $sql = "INSERT INTO `users`(`id`, `username`, `fullname`, `password`, `token`, profileimage) VALUES ('','$felhasznalonevek[$i]','$nevek[$i]','','','');";
     mysqli_query($conn, $sql);
 }
 ?>

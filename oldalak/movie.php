@@ -1,17 +1,35 @@
+<?php
+include_once "../php/conn.php";
+if(isset($_GET['id'])){
+    $movieId = $_GET['id'];
+    $sql = "SELECT title AS title, description AS description, image AS image, `releasedate` AS rd, rating AS rating, coverimage AS coverimage FROM movies WHERE id = '$movieId';";
+    $result = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            $a[] = $row;
+        }
+    }else{
+        exit(http_response_code(400));
+    }
+}else{
+    exit(http_response_code(400));
+}
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Értékelések</title>
+    <title><?php echo $a[0]['title']?></title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="../kepek/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../css/reviews.css">
     <script src="../javascript/menu.js" defer></script>
+    <script src="../javascript/movie.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
 </head>
-<body>
+<body onload="load()">
     <header>
         <a href="../index.html" class="logo">FFórum</a>
         <nav class="navbar">
@@ -52,10 +70,9 @@
 
     <main>
 
-        <div class="intro">
+        <div class="intro" style="background-image: url(<?php echo "../".$a[0]['coverimage']?>); ">
             <div class="intro-title">
-                
-                <p>Drive-Gázt!</p>
+                <?php echo "<p>".$a[0]['title']."</p>";?>
             </div>
 
             <div class="intro-rating">
@@ -83,11 +100,11 @@
 
         <div class="main-desc">
             <div class="desc-title">
-                <p>Drive-Gázt!</p>
+            <?php echo "<p>".$a[0]['title']."</p>";?>
             </div>
 
             <div class="desc-script">
-                <p>Driver egy igazi magányos farkas, aki fapofával űzi a veszélyt. Nappal autós kaszkadőrként dolgozik, éjjel rablásoknál sofőrködik. Felkapott a szakmájában, mert igazi profi: a tökéletes, hideg és megbízható munkaerő. Azonban a magányos farkasnak is van szíve - beleszeret a szomszédjában lakó nőbe.</p>
+                <?php echo "<p>".$a[0]['description']."</p>";?>
             </div>
 
         </div>
@@ -124,80 +141,23 @@
                 <p>Hozzászólások</p>
             </div>
             <div class="comment-session">
-                <div class="act-comment">
-                    <div class="list">
-                        <div class="user-detail">
-                            <div class="user-img">
-                                <img  src="../kepek/profile-pic-example.jpg" alt="Description of the image">
-                            </div>
-                            <div class="user-meta">
-                                <div class="name">
-                                    Név
-                                </div>
-                                <div class="day">
-                                    1 napja
-                                </div>
-                            </div>
-        
-                        </div>    
-
-                        <div class="comment-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta auctor varius. Aliquam venenatis rhoncus tellus, vel congue libero hendrerit eu.</p>
-                        </div>
-                        
+            </div>
+            <div class="comment-box">
+                <div class="user">
+                    <div class="img">
+                        <img  src="../kepek/profile-pic-example.jpg" alt="Description of the image">
                     </div>
-                    
+                    <div class="name">
+                        Név
+                    </div>
                 </div>
 
+                <form action="valami.php" method="post">
+                    <textarea name="textarea" cols="30" rows="10" placeholder="Hozzászólás írása"></textarea>
+                    <button class="comment-submit">Hozzászólás</button>
 
-                <div class="act-comment">
-                    <div class="list">
-                        <div class="user-detail">
-                            <div class="user-img">
-                                <img  src="../kepek/default_profile_pic.png" alt="Description of the image">
-                            </div>
-                            <div class="user-meta">
-                                <div class="name">
-                                    Név2
-                                </div>
-                                <div class="day">
-                                    3 napja
-                                </div>
-                            </div>
-        
-                        </div>    
+                </form>
 
-                        <div class="comment-text">
-                            <p>Donec et vulputate justo, sed accumsan lorem. Curabitur sagittis ligula cursus ullamcorper consequat. Quisque porttitor auctor orci, eget tincidunt velit tristique eu.</p>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-
-
-
-
-
-    
-                <div class="comment-box">
-                    <div class="user">
-                        <div class="img">
-                            <img  src="../kepek/profile-pic-example.jpg" alt="Description of the image">
-                        </div>
-                        <div class="name">
-                            Név
-                        </div>
-                    </div>
-    
-                    <form action="valami.php" method="post">
-                        <textarea name="textarea" cols="30" rows="10" placeholder="Hozzászólás írása"></textarea>
-                        <button class="comment-submit">Hozzászólás</button>
-    
-                    </form>
-    
-    
-                </div>
 
             </div>
             
@@ -266,7 +226,6 @@
                             <img class="posters" src="../kepek/nightcrawler.jpg" alt="Description of the image">
                             
                         </a>
-                      
 
                     </li>
 
