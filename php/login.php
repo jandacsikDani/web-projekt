@@ -2,21 +2,21 @@
 include_once "conn.php";
 $userName = $_POST['username'];
 $passWord = hash("sha512", $_POST['password']);
-//$keepLogin = $_POST['keepLogin'];
-$sql = "SELECT password, id FROM users WHERE username = '$userName';";
-$result = mysqli_query($conn, $sql);
-if(mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_row($result)){
-        if($row[0] == $passWord){
-            echo "0\t".$row[1];
-        }else{
-            echo "1\tHibás jelszó";
+$keepLogin = $_POST['keepLogin'];
+if($keepLogin == "false"){
+    $sql = "SELECT password, id FROM users WHERE username = '$userName';";
+    $result = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_row($result)){
+            if($row[0] == $passWord){
+                echo "0\t".$row[1];
+            }else{
+                echo "1\tHibás jelszó";
+            }
         }
+    }else{
+        echo "1\tNem található ilyen felhasználó!";
     }
-}else{
-    echo "1\tNem található ilyen felhasználó!";
-}
-/*if(!$keepLogin){
 }else{
     $sql = "SELECT password, id FROM users WHERE username = '$userName';";
     $result = mysqli_query($conn, $sql);
@@ -36,5 +36,5 @@ if(mysqli_num_rows($result) > 0) {
     }else{
         echo "1\tNem található ilyen felhasználó!";
     }
-}*/
+}
 ?>

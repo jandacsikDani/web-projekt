@@ -8,17 +8,16 @@ function setCookie(cname, cvalue, exdays) {
 document.querySelector(".sign").addEventListener("click", () => {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-    let stayin = document.querySelector('#stayin:checked').value;
-    console.log(stayin);
+    let stayin = document.getElementById("stayin").checked;
     $.ajax({
         url: "../php/login.php",
         type: "post",
-        data: {username: username, password: password, keppLogin: stayin},
+        data: {username: username, password: password, keepLogin: stayin},
         success: function(result){
             var back = result.split("\t");
             if(back[0] == "0"){
-                setCookie('userId', back[1], 1);
-                //window.location.href = "../";
+                setCookie("userId", back[1], 1);
+                window.location.href = "../";
             }else{
                 alert(back[1]);
             }

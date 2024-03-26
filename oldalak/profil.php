@@ -42,16 +42,10 @@ if(isset($_GET['id'])){
                     <a href="ertekelesek.html" class="nav-link">Értékelések</a>
                 </li>
                 <li class="nav-item">
-                    <a href="review.html" class="nav-link">Film</a>
-                </li>
-                <li class="nav-item">
                     <a href="profiles.html" class="nav-link">Felhasználók</a>
                 </li>
                 <li class="nav-item">
                     <a href="../index.html" class="nav-link" onclick="logout()">Kijelentkezés</a>
-                </li>
-                <li class="nav-item">
-                    <a href="profil.html" class="nav-link">Profil</a>
                 </li>
                 <li>
                     <div class="search">

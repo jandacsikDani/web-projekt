@@ -1,10 +1,27 @@
 function checkCookie() {
     let userId = getCookie("userId");
-    if (userId != "") {
-        document.getElementById("profileC").classList.remove("hidden");
-        document.getElementById("loginC").classList.add("hidden");
-        document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
-    }
+    if (userId != "") tokenLogin(userId, getCookie("token"));
+}
+
+function tokenLogin(userId, token){
+    $.ajax({
+        url: "php/tokenLogin.php",
+        type: "post",
+        async: false,
+        data: {userId: userId, token: token},
+        success: function(result){
+            if(result == "0"){
+                document.getElementById("profileC").classList.remove("hidden");
+                document.getElementById("loginC").classList.add("hidden");
+                document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
+            }else{
+                alert(result);
+            }
+        },
+        error: function(error){
+            console.error(error);
+        }
+    });
 }
 
 function getCookie(cname) {
@@ -35,7 +52,13 @@ function deleteCookie(cname) {
 }
 
 function logout(){
+    $.ajax({
+        url: "../php/misc.php",
+        type: "post",
+        data: {type: "deleteToken", user: getCookie("userId")}
+    });
     deleteCookie("userId");
+    deleteCookie("token");
     window.location.replace("../");
 }
 
