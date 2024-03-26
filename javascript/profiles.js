@@ -24,7 +24,7 @@ function load(){
 
         var imgDiv = document.createElement("div");
         var img = document.createElement("img");
-        img.src = "../kepek/default_profile_pic.png";
+        img.src = "../kepek/profile/default.png";
         img.alt = "";
         imgDiv.appendChild(img);
 

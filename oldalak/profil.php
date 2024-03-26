@@ -71,8 +71,8 @@ if(isset($_GET['id'])){
     <main>
         <div class="profile-container">
             <div class="profile">
+            <img class='profile-pic' src="<?php echo $a[0]['profileimage']?>" alt='Description of the image'>
                 <?php
-                echo "<img class='profile-pic' src='".$a[0]['profileimage']."' alt='Description of the image'>";
                 echo "<p class='full-name' id='fullname'>".$a[0]['fullname']."</p>";
                 echo "<p class='username' id='username'>@".$a[0]['username']."</p>"
                 ?>
