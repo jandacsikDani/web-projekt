@@ -1,8 +1,9 @@
 function checkCookie() {
-    let username = getCookie("username");
-    if (username != "") {
-        document.getElementById("profile").innerHTML = "Saját profilom";
-        document.getElementById("profile").setAttribute("href", "oldalak/profil.html");
+    let userId = getCookie("userId");
+    if (userId != "") {
+        document.getElementById("profileC").classList.remove("hidden");
+        document.getElementById("loginC").classList.add("hidden");
+        document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
     }
 }
 
@@ -34,7 +35,7 @@ function deleteCookie(cname) {
 }
 
 function logout(){
-    deleteCookie("username");
+    deleteCookie("userId");
     window.location.replace("../");
 }
 

@@ -16,9 +16,4 @@ function load(){
     });
     //document.getElementById("review").innerHTML = data[0]['review'];
     document.getElementById("comment").innerHTML = data[0]['comment'];
-
 }
-
-document.addEventListener("load", () => {
-
-})

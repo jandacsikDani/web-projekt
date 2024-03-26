@@ -55,14 +55,18 @@
             <p class="title">Bejelentekzés</p>
                 <div class="input-group">
                     <label for="username">Felhasználónév</label>
-                    <input type="text" name="username" id="username" placeholder="">
+                    <input type="text" name="username" id="username" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Jelszó</label>
-                    <input type="password" name="password" id="password" placeholder="">
+                    <input type="password" name="password" id="password" required>
                     <div class="forgot">
                         <a rel="noopener noreferrer" href="#">Elfelejtett jelszó</a>
                     </div>
+                </div>
+                <div class="input-group">
+                    <label for="stayin">Bejelentkezve maradok!</label>
+                    <input type="checkbox" name="stayin" id="stayin">
                 </div>
                 <button class="sign">Bejelentekzés</button>
             <br>
