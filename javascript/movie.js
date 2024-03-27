@@ -1,8 +1,3 @@
-function get(name){
-    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-        return decodeURIComponent(name[1]);
-}
-
 function load(){
     const movieId = get("id");
     var comments = new Array();
@@ -64,6 +59,3 @@ function load(){
     }
 }
 
-function viewprofile(profileId){
-    window.location.href ="../oldalak/profil.php?id="+profileId;
-}

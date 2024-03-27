@@ -27,6 +27,7 @@ if(isset($_GET['id'])){
     <script src="../javascript/main.js"></script>
     <script src="../javascript/menu.js" defer></script>
     <script src="../javascript/profil.js"></script>
+    <script src="../javascript/func.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
 
 </head>
@@ -35,17 +36,20 @@ if(isset($_GET['id'])){
         <a href="../index.html" class="logo">FFórum</a>
         <nav class="navbar">
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link">Kezdőlap</a>
+            <li class="nav-item">
+                    <a href="#" class="nav-link">Kezdőlap</a>
                 </li>
                 <li class="nav-item">
                     <a href="ertekelesek.html" class="nav-link">Értékelések</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profiles.html" class="nav-link">Felhasználók</a>
+                    <a href="profiles.html">Felhasználók</a>
                 </li>
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link" onclick="logout()">Kijelentkezés</a>
+                <li class="nav-item" id="loginC">
+                    <a href="login.html" class="nav-link" id="login">Bejelentkezés</a>
+                </li>
+                <li class="nav-item hidden" id="profileC">
+                    <a href="#" class="nav-link" id="profile">Saját profilom</a>
                 </li>
                 <li>
                     <div class="search">

@@ -1,4 +1,5 @@
 function load(){
+    checkSession();
     var users = new Array();
     $.ajax({
         url: "../php/profiles.php",
@@ -48,3 +49,4 @@ function load(){
 function viewProfile(profileId){
     window.location.href ="../oldalak/profil.php?id="+profileId;
 }
+
