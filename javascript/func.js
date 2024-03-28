@@ -34,9 +34,8 @@ function checkSession(){
             if(result == 0){
                 document.getElementById("profileC").classList.remove("hidden");
                 document.getElementById("loginC").classList.add("hidden");
-                document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+getCookie("userId"));
+                document.getElementById("profile").setAttribute("href", "profil.php?id="+getCookie("userId"));
             }
-            return false;
         }
     });
 }
@@ -50,7 +49,7 @@ function logout(){
     deleteCookie("userId");
     deleteCookie("token");
     sessionStorage.clear("token");
-    window.location.replace("../");
+    window.location.href("../index.html");
 }
 
 function get(name){
