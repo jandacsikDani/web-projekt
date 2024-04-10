@@ -53,8 +53,8 @@ if(isset($_GET['id'])){
                 </li>
                 <li>
                     <div class="search">
-                        <span class="search-icon material-symbols-outlined">search</span>
-                        <input class="search-input" type="search" placeholder="Keresés">
+                        <input class="search-input" type="search" placeholder="Keresés" list="searchBar">
+                        <span class="search-icon material-symbols-outlined" onclick="gotoMovie()">search</span>
                     </div>
                 </li>
             </ul>

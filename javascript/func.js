@@ -25,6 +25,10 @@ function deleteCookie(cname) {
     document.cookie = cname + "=" + " ;Thu, 18 Dec 2013 12:00:00 UTC ;path=/";
 }
 
+function movie(movieId){
+    window.location.href = "oldalak/movie.php?id="+movieId;
+}
+
 function checkSession(){
     $.ajax({
         url: "../php/misc.php",
@@ -59,4 +63,59 @@ function get(name){
 
 function viewprofile(profileId){
     window.location.href ="../oldalak/profil.php?id="+profileId;
+}
+
+function serachBar(main){
+    var url;
+    if(main){
+        url = "php/movies.php";
+    }else{
+        url = "../php/movies.php";
+    }
+    var data = new Array();
+    $.ajax({
+        url: url,
+        type: "post",
+        async: false,
+        success: function(result){
+            data = JSON.parse(result);
+        }
+    });
+    const searchDiv = document.getElementsByClassName('search')[0];
+    var datalist = document.createElement('datalist');
+    datalist.setAttribute("id", "searchBar");
+    for (let i = 0; i < data.length; i++) {
+        var option = document.createElement('option');
+        option.textContent = data[i]['title'];
+        datalist.appendChild(option);
+    }
+    searchDiv.appendChild(datalist);
+}
+
+function gotoMovie(main){
+    var url;
+    var url2;
+    if(main){
+        url = "php/searchBar.php";
+        url2 = "oldalak/searchresult.php?query=";
+    }else{
+        url = "../php/searchBar.php";
+        url2 = "searchresult.php?query=";
+    }
+    const data = document.getElementsByClassName('search-input')[0].value;
+    var arr = new Array();
+    $.ajax({
+        url: url,
+        type: "post",
+        async: false,
+        data: {movie: data},
+        success: function(result){
+            if(result == 1){
+                window.location.href = url2+data;
+                return;
+            }
+            arr = JSON.parse(result);
+        }
+    });
+    movie(arr[0][0]);
 }

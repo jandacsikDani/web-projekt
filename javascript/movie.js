@@ -57,5 +57,6 @@ function load(){
 
     document.getElementsByClassName("comment-session")[0].appendChild(actComment);
     }
+    serachBar();
 }
 

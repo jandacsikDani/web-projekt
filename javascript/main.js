@@ -58,8 +58,5 @@ function load(){
         document.getElementsByClassName("movies")[0].appendChild(movieCell);
     }
     checkCookie();
-}
-
-function movie(movieId){
-    window.location.href = "oldalak/movie.php?id="+movieId;
+    serachBar(true);
 }
