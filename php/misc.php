@@ -31,7 +31,5 @@ switch ($type) {
             echo 1;
             exit();
         }
-            
-
 }
 ?>

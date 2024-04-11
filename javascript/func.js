@@ -28,6 +28,9 @@ function deleteCookie(cname) {
 function movie(movieId){
     window.location.href = "oldalak/movie.php?id="+movieId;
 }
+/*function movie(movieId){
+    window.location.href = "movie.php?id="+movieId;
+}*/
 
 function checkSession(){
     $.ajax({

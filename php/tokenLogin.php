@@ -9,10 +9,10 @@
             if($row[0] == $token){
                 echo "0";
             }else{
-                echo "Nem sikerült az automatikus bejelentkezés!";
+                echo "Nem sikerült az automatikus bejelentkezés!1";
             }
         }
     }else{
-        echo "Nem sikerült az automatikus bejelentkezés!";
+        echo "Nem sikerült az automatikus bejelentkezés!2";
     }
 ?>

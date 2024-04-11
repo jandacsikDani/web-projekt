@@ -29,6 +29,8 @@ if(mysqli_num_rows($result) > 0){
                 }
             }
             exit;
+        }else{
+            echo "1\tSikertelen regisztráció.";
         }
     }
 }
