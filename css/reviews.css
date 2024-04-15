@@ -294,6 +294,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+.rating-stars .fa-star{
+  cursor: pointer;
+}
+
 
 
 .rating-submit {

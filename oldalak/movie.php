@@ -14,6 +14,46 @@ if(isset($_GET['id'])){
 }else{
     exit(http_response_code(400));
 }
+
+
+
+if(isset($_POST['save'])) {
+    $userId = $_POST['userId'];
+    $ratedIndex = $_POST['ratedIndex'];
+    $ratedIndex++;
+
+
+    $userId = mysqli_real_escape_string($conn, $userId);
+    $ratedIndex = mysqli_real_escape_string($conn, $ratedIndex);
+
+    
+    $query = "SELECT COUNT(*) FROM ratings WHERE user_id = '$userId'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+
+    if ($row[0] > 0) {
+        
+        $query = "UPDATE ratings SET rating = '$ratedIndex' WHERE user_id = '$userId'";
+    } else {
+        
+        $query = "INSERT INTO ratings (user_id, rating) VALUES ('$userId', '$ratedIndex')";
+    }
+
+    
+    $success = mysqli_query($conn, $query);
+    
+    /*if ($success) {
+        echo "Operation successful!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }*/
+
+
+    mysqli_close($conn);
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -29,6 +69,7 @@ if(isset($_GET['id'])){
     <script src="../javascript/loaders.js" defer></script>
     <script src="../javascript/func.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
+    <script src="../javascript/rating.js" defer></script>
 </head>
 <body onload="movieLoad()">
     <header>
@@ -121,11 +162,11 @@ if(isset($_GET['id'])){
                 </div>
 
                 <div class="rating-stars">
-                    <span class="fa fa-star unchecked"></span>
-                    <span class="fa fa-star unchecked"></span>
-                    <span class="fa fa-star unchecked"></span>
-                    <span class="fa fa-star unchecked"></span>
-                    <span class="fa fa-star unchecked"></span>
+                    <span class="fa fa-star" data-index=0></span>
+                    <span class="fa fa-star" data-index=1></span>
+                    <span class="fa fa-star" data-index=2></span>
+                    <span class="fa fa-star" data-index=3></span>
+                    <span class="fa fa-star" data-index=4></span>
 
                 </div>
 
