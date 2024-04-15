@@ -22,7 +22,7 @@ if(isset($_POST['save'])) {
     $ratedIndex = $_POST['ratedIndex'];
     $ratedIndex++;
 
-
+    
     $userId = mysqli_real_escape_string($conn, $userId);
     $ratedIndex = mysqli_real_escape_string($conn, $ratedIndex);
 
@@ -42,15 +42,13 @@ if(isset($_POST['save'])) {
     
     $success = mysqli_query($conn, $query);
     
-    /*if ($success) {
-        echo "Operation successful!";
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }*/
-
-
+   
     mysqli_close($conn);
+    
+    
+    exit(json_encode(array('id' => $userId)));
 }
+
 
 
 
