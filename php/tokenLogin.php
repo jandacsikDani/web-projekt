@@ -1,18 +1,25 @@
 <?php
     include_once "conn.php";
-    $userId = $_POST['userId'];
-    $token = $_POST['token'];
+    $userId = $_GET['userId'];
+    $token = $_GET['token'];
     $sql = "SELECT token FROM users WHERE id = '$userId';";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_row($result)) {
             if($row[0] == $token){
-                echo "0";
+                echo json_encode([
+                    "status"=>0
+                ]);
             }else{
-                echo "Nem sikerült az automatikus bejelentkezés!1";
+                echo json_encode([
+                    "status"=> 1,
+                    "message"=>"Nem sikerült az automatikus bejelentkezés!"
+                ]);
             }
         }
     }else{
-        echo "Nem sikerült az automatikus bejelentkezés!2";
+        echo json_encode([
+            "status"=> 1,
+            "message"=> "Nem sikerült az automatikus bejelentkezés!"
+        ]);
     }
-?>

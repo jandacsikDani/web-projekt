@@ -7,17 +7,17 @@ document.querySelector(".sign").addEventListener("click", () => {
         type: "post",
         data: {username: username, password: password, keepLogin: stayin},
         success: function(result){
-            var back = result.split("\t");
-            if(back[0] == "0"){
-                setCookie("userId", back[1], 1);
-                sessionStorage.setItem("token", back[2]);
+            if(result['status'] == 0){
+                setCookie("userId", result['userid'], 1);
+                sessionStorage.setItem("token", result['token']);
                 window.location.href = "../";
             }else{
-                alert(back[1]);
+                alert(result['message']);
             }
         },
-        error: function(error){
+        error: function(xhr, status, error){
             console.error(error);
+            console.error(status);
         }
     });
 })

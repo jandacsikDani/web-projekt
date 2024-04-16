@@ -1,50 +1,28 @@
 <?php
 include_once "../php/conn.php";
-if(isset($_GET['id'])){
-    $movieId = $_GET['id'];
-    $sql = "SELECT title AS title, description AS description, image AS image, `releasedate` AS rd, rating AS rating, coverimage AS coverimage FROM movies WHERE id = '$movieId';";
-    $result = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-            $a[] = $row;
-        }
-    }else{
-        exit(http_response_code(400));
-    }
-}else{
-    exit(http_response_code(400));
-}
-
-
+header("Content-type: text/html; charset=UTF-8");
 
 if(isset($_POST['save'])) {
     $userId = $_POST['userId'];
     $ratedIndex = $_POST['ratedIndex'];
     $ratedIndex++;
 
-    
     $userId = mysqli_real_escape_string($conn, $userId);
     $ratedIndex = mysqli_real_escape_string($conn, $ratedIndex);
-
     
     $query = "SELECT COUNT(*) FROM ratings WHERE user_id = '$userId'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result);
 
     if ($row[0] > 0) {
-        
         $query = "UPDATE ratings SET rating = '$ratedIndex' WHERE user_id = '$userId'";
     } else {
-        
         $query = "INSERT INTO ratings (user_id, rating) VALUES ('$userId', '$ratedIndex')";
     }
-
     
     $success = mysqli_query($conn, $query);
-    
-   
+
     mysqli_close($conn);
-    
     
     exit(json_encode(array('id' => $userId)));
 }
@@ -57,12 +35,12 @@ if(isset($_POST['save'])) {
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $a[0]['title']?></title>
+    <title>MovieTamplate</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="../kepek/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/reviews.css">
+    <link rel="stylesheet" href="../css/movie.css">
     <script src="../javascript/menu.js" defer></script>
     <script src="../javascript/loaders.js" defer></script>
     <script src="../javascript/func.js" defer></script>
@@ -81,16 +59,10 @@ if(isset($_POST['save'])) {
                     <a href="ertekelesek.html" class="nav-link">Értékelések</a>
                 </li>
                 <li class="nav-item">
-                    <a href="review.html" class="nav-link">Film</a>
-                </li>
-                <li class="nav-item">
                     <a href="profiles.html" class="nav-link">Felhasználók</a>
                 </li>
                 <li class="nav-item">
                     <a href="login.html" class="nav-link">Bejelentkezés</a>
-                </li>
-                <li class="nav-item">
-                    <a href="profil.html" class="nav-link">Profil</a>
                 </li>
                 <li>
                     <div class="search">
@@ -110,9 +82,8 @@ if(isset($_POST['save'])) {
 
     <main>
 
-        <div class="intro" style="background-image: url(<?php echo "../".$a[0]['coverimage']?>); ">
+        <div class="intro">
             <div class="intro-title">
-                <?php echo "<p>".$a[0]['title']."</p>";?>
             </div>
 
             <div class="intro-rating">
@@ -140,11 +111,9 @@ if(isset($_POST['save'])) {
 
         <div class="main-desc">
             <div class="desc-title">
-            <?php echo "<p>".$a[0]['title']."</p>";?>
             </div>
 
             <div class="desc-script">
-                <?php echo "<p>".$a[0]['description']."</p>";?>
             </div>
 
         </div>
@@ -169,11 +138,7 @@ if(isset($_POST['save'])) {
                 </div>
 
                 <button class="rating-submit">Értékelés</button>
-                
-
-            </div>
-
-            
+            </div>           
         </div>
 
         <div class="comments">
@@ -181,6 +146,11 @@ if(isset($_POST['save'])) {
                 <p>Hozzászólások</p>
             </div>
             <div class="comment-session">
+            </div>
+            <div id="please-login">
+                <div>Kommenteléshez kérlek jelentkezz be</div>
+                <button class="comment-submit" onclick="window.location.href = 'login.html';">Bejelentkezés</button>
+                <div>vagy ha új vagy itt <a href="register.html">regisztrálj!</a></div>
             </div>
             <div class="comment-box">
                 <div class="user">
@@ -191,17 +161,9 @@ if(isset($_POST['save'])) {
                         Név
                     </div>
                 </div>
-
-                <form action="valami.php" method="post">
-                    <textarea name="textarea" cols="30" rows="10" placeholder="Hozzászólás írása"></textarea>
-                    <button class="comment-submit">Hozzászólás</button>
-
-                </form>
-
-
+                <textarea name="textarea" cols="30" rows="10" placeholder="Hozzászólás írása" id="comment"></textarea>
+                <button class="comment-submit" onclick="postNewComment()">Hozzászólás</button>
             </div>
-            
-
         </div>
 
         <div class="similair">

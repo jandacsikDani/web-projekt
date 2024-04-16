@@ -7,13 +7,19 @@ $password = hash("sha512", $_POST['password']);
 $sql = "SELECT username FROM users WHERE username = '$username';";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0){
-    echo "1\tA felhasználónév már foglalt.";
+    echo json_encode([
+        "status"=>1,
+        "message"=>"A felhasználónév már foglalt."
+    ]);
     exit;
 }else{
     $sql2 = "SELECT email FROM users WHERE email = '$email';";
     $result2 = mysqli_query($conn, $sql2);
     if(mysqli_num_rows($result2) > 0){
-        echo "1\tEzzel az e-mail címmel van regisztrálva felhasználó.";
+        echo json_encode([
+            "status"=> 1,
+            "message"=> "Ezzel az e-mail címmel van regisztrálva felhasználó."
+        ]);
         exit;
     }else{
         $session = hash("sha512", random_bytes(50));
@@ -24,14 +30,23 @@ if(mysqli_num_rows($result) > 0){
             $result4 = mysqli_query($conn, $sql4);
             if(mysqli_num_rows($result4) > 0){
                 while($row = mysqli_fetch_row($result4)){
-                    echo "0\tSikeres regisztráció\t".$row[0]."\t".$token."\t".$session;
+                    http_response_code(201);
+                    echo json_encode([
+                        "status"=> 0,
+                        "message"=> "Sikeres regisztráció.",
+                        "userid"=>$row[0],
+                        "token"=> $token,
+                        "session"=>$session
+                    ]);
                     exit;
                 }
             }
             exit;
         }else{
-            echo "1\tSikertelen regisztráció.";
+            echo json_encode([
+                "status"=> 1,
+                "message"=> "Sikertelen regisztráció."
+            ]);
         }
     }
 }
-?>

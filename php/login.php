@@ -12,13 +12,23 @@ if($keepLogin == "false"){
                 $stoken = hash("sha512", random_bytes(50));
                 $sql2 = "UPDATE users SET session = '$stoken' WHERE username = '$userName';";
                 mysqli_query($conn, $sql2);
-                echo "0\t".$row[1]."\t".$stoken;
+                echo json_encode([
+                    "status"=>0,
+                    "userid"=>$row[1],
+                    "token"=>$stoken
+                ]);
             }else{
-                echo "1\tHibás jelszó";
+                echo json_encode([
+                    "status"=>1,
+                    "message"=>"Hibás jelszó"
+                ]);
             }
         }
     }else{
-        echo "1\tNem található ilyen felhasználó!";
+        echo json_encode([
+            "status"=>1,
+            "message"=> "Nem található ilyen felhasználó!"
+        ]);
     }
 }else{
     $sql = "SELECT password, id FROM users WHERE username = '$userName';";
@@ -32,14 +42,21 @@ if($keepLogin == "false"){
                 $_SESSION['token'] = $stoken;
                 $sql = "UPDATE users SET token = '$token', session = '$stoken' WHERE username = '$userName';";
                 mysqli_query($conn, $sql);
-                echo "0\t".$row[1];
+                echo json_encode([
+                    "status"=>0,
+                    "userid"=>$row[1]
+                ]);
             }else{
-                echo $row[0];
-                echo "1\tHibás jelszó";
+                echo json_encode([
+                    "status"=>1,
+                    "message"=>"Hibás jelszó"
+                ]);
             }
         }
     }else{
-        echo "1\tNem található ilyen felhasználó!";
+        echo json_encode([
+            "status"=>1,
+            "message"=>"Hibás jelszó"
+        ]);
     }
 }
-?>

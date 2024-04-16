@@ -1,20 +1,3 @@
-<?php
-include_once "../php/conn.php";
-if(isset($_GET['id'])){
-    $userId = $_GET['id'];
-    $sql = "SELECT username AS username, fullname AS fullname, profileimage AS profileimage FROM users WHERE id = '$userId';";
-    $result = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-            $a[] = $row;
-        }
-    }else{
-        exit(http_response_code(400));
-    }
-}else{
-    exit(http_response_code(400));
-}
-?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -68,11 +51,9 @@ if(isset($_GET['id'])){
     <main>
         <div class="profile-container">
             <div class="profile">
-            <img class='profile-pic' src="<?php echo $a[0]['profileimage']?>" alt='Description of the image'>
-                <?php
-                echo "<p class='full-name' id='fullname'>".$a[0]['fullname']."</p>";
-                echo "<p class='username' id='username'>@".$a[0]['username']."</p>"
-                ?>
+            <img class='profile-pic' src="" alt='Description of the image'>
+                <p class='full-name'></p>
+                <p class='username'></p>
             </div>
             <div class="details">
                 <div class="detail-item">

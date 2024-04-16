@@ -10,19 +10,19 @@ document.querySelector(".sign").addEventListener("click", () => {
             type: "post",
             data:{username: username, fullname: fullname, email: email, password: password},
             success: function(result){
-                var back = result.split("\t");
-                if(back[0] == "0"){
-                    setCookie("userId", back[2], 1);
-                    setCookie("token", back[3], 1);
-                    sessionStorage.setItem("token", back[4]);
-                    alert(back[1]);
-                    //window.location.href = "../";
+                if(result['status'] == 0){
+                    setCookie("userId", result['userid'], 1);
+                    setCookie("token", result['token'], 1);
+                    sessionStorage.setItem("token", result['session']);
+                    alert(back['message']);
+                    window.location.href = "../";
                 }else{
-                    alert(back[1]);
+                    alert(back['message']);
                 }
             },
-            error: function(error){
+            error: function(xhr, status, error){
                 console.error(error);
+                console.error(status);
             }
         });
     }else{

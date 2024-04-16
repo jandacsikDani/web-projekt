@@ -53,26 +53,26 @@ function checkSession(){
 
 function checkCookie() {
     let userId = getCookie("userId");
-    if (userId != "") tokenLogin(userId, getCookie("token"));
+    if (userId != "" && sessionStorage.getItem("token") == "") tokenLogin(userId, getCookie("token"));
 }
 
 function tokenLogin(userId, token){
     $.ajax({
         url: "php/tokenLogin.php",
-        type: "post",
-        async: false,
+        type: "get",
         data: {userId: userId, token: token},
         success: function(result){
-            if(result == "0"){
+            if(result['status'] == 0){
                 document.getElementById("profileC").classList.remove("hidden");
                 document.getElementById("loginC").classList.add("hidden");
                 document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
             }else{
-                alert(result);
+                alert(result['message']);
             }
         },
-        error: function(error){
+        error: function(xhr, status, error){
             console.error(error);
+            console.error(status);
         }
     });
 }
@@ -151,4 +151,26 @@ function gotoMovie(main){
         }
     });
     movie(arr[0][0]);
+}
+
+function postNewComment(){
+    var comment = document.getElementById('comment').value;
+    if(comment == ""){
+        return;
+    }
+    const movieId = get('id');
+    $.ajax({
+        url: "../php/postNewComment.php",
+        type: "post",
+        data: {comment: comment, movieId: movieId},
+        success: function(result){
+            if(result['status'] == 0){
+                location.reload();
+            }
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+            console.error(status);
+        }
+    });
 }

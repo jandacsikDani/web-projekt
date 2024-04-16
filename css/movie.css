@@ -200,6 +200,21 @@ main{
   border-radius: 6px;
   padding: 10px;
   overflow: hidden;
+  display: none;
+  margin-left: 10px;
+}
+
+#please-login{
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(17, 24, 37, 1);
+  border-radius: 6px;
+  box-shadow: 0 2px 2px black;
+  width: 300px;
+  padding: 10px;
+  margin-left: 10px;
+}
+#please-login div:not(:first-child){
+  margin-top: 10px;
 }
 
 .user {
