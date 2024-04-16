@@ -53,7 +53,7 @@ function indexLoad(){
         type: "get",
         async: false,
         success: function(result){
-            movies = JSON.parse(result);
+            movies = result;
         }
     });
     for (let i = 0; i < movies.length; i++) {
@@ -87,12 +87,11 @@ function movieLoad(){
     const movieId = get("id");
     var comments = new Array();
     $.ajax({
-        url: "../php/movie.php",
-        type: "post",
+        url: "../php/v2/comment/movie/"+movieId,
+        type: "get",
         async: false,
-        data: {id: movieId},
         success: function(result){
-            comments = JSON.parse(result);
+            comments = result;
         }
     });
     for (let i = 0; i < comments.length; i++) {
