@@ -11,12 +11,13 @@ if($keepLogin == "false"){
             if($row[0] == $passWord){
                 $stoken = hash("sha512", random_bytes(50));
                 $sql2 = "UPDATE users SET session = '$stoken' WHERE username = '$userName';";
-                mysqli_query($conn, $sql2);
-                echo json_encode([
-                    "status"=>0,
-                    "userid"=>$row[1],
-                    "token"=>$stoken
-                ]);
+                if(mysqli_query($conn, $sql2)){
+                    setcookie("userId", $row[1], time()+36400,"/");
+                    echo json_encode([
+                        "status"=>0,
+                        "session" => $stoken
+                    ]);
+                }
             }else{
                 echo json_encode([
                     "status"=>1,
@@ -37,15 +38,21 @@ if($keepLogin == "false"){
         while($row = mysqli_fetch_row($result)){
             if($row[0] == $passWord){
                 $token = hash("sha512", random_bytes(50));
-                setcookie("token", $token, time()+86400, "/");
                 $stoken = hash("sha512", random_bytes(50));
-                $_SESSION['token'] = $stoken;
                 $sql = "UPDATE users SET token = '$token', session = '$stoken' WHERE username = '$userName';";
-                mysqli_query($conn, $sql);
-                echo json_encode([
-                    "status"=>0,
-                    "userid"=>$row[1]
-                ]);
+                if(mysqli_query($conn, $sql)){
+                    setcookie("token", $token, time()+86400, "/");
+                    setcookie("userId", $row[1], time()+86400, "/");
+                    $_SESSION['token'] = $stoken;
+                    echo json_encode([
+                        "status"=>0
+                    ]);
+                }else{
+                    echo json_encode([
+                        "status"=> 1,
+                        "message"=>"sql error"
+                    ]);
+                }
             }else{
                 echo json_encode([
                     "status"=>1,

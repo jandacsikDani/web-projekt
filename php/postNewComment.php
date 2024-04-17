@@ -12,12 +12,14 @@ if(isset($_COOKIE['userId'])){
         http_response_code(201);
     }else{
         echo json_encode([
-            "status"=> 1
+            "status"=> 1,
+            "message"=>"failed to post the comment"
         ]);
     }
 }else{
     echo json_encode([
-        "status"=> -1
+        "status"=> -1,
+        "message"=> "no user logged in"
     ]);
     http_response_code(401);
 }

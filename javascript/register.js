@@ -6,7 +6,7 @@ document.querySelector(".sign").addEventListener("click", () => {
     let repassword = document.getElementById("repassword").value;
     if(password == repassword){
         $.ajax({
-            url: "../php/register.php",
+            url: "/web-projekt/php/register.php",
             type: "post",
             data:{username: username, fullname: fullname, email: email, password: password},
             success: function(result){

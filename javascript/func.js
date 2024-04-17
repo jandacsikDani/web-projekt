@@ -26,46 +26,32 @@ function deleteCookie(cname) {
 }
 
 function movie(movieId){
-    window.location.href = "oldalak/movie.php?id="+movieId;
+    window.location.href = "/web-projekt/oldalak/movie.php?id="+movieId;
 }
 /*function movie(movieId){
     window.location.href = "movie.php?id="+movieId;
 }*/
 
 function viewProfile(profileId){
-    window.location.href ="../oldalak/profil.php?id="+profileId;
+    window.location.href ="/web-projekt/oldalak/profil.php?id="+profileId;
 }
 
 function checkSession(){
     $.ajax({
-        url: "../php/misc.php",
-        type: "post",
-        data: {type: "checkSession", session: sessionStorage.getItem("token")},
-        success: function(result){
-            if(result == 0){
-                document.getElementById("profileC").classList.remove("hidden");
-                document.getElementById("loginC").classList.add("hidden");
-                document.getElementById("profile").setAttribute("href", "profil.php?id="+getCookie("userId"));
-            }
-        }
-    });
-}
-
-function checkCookie() {
-    let userId = getCookie("userId");
-    if (userId != "" && sessionStorage.getItem("token") == "") tokenLogin(userId, getCookie("token"));
-}
-
-function tokenLogin(userId, token){
-    $.ajax({
-        url: "php/tokenLogin.php",
+        url: "/web-projekt/php/getSession.php",
         type: "get",
-        data: {userId: userId, token: token},
+        data: {userId: getCookie("userId")},
         success: function(result){
             if(result['status'] == 0){
-                document.getElementById("profileC").classList.remove("hidden");
-                document.getElementById("loginC").classList.add("hidden");
-                document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
+                if(getCookie("userId") == result['userId'] && sessionStorage.getItem('token') == result['session']){
+                    document.getElementById("profileC").classList.remove("hidden");
+                    document.getElementById("loginC").classList.add("hidden");
+                    document.getElementById("profile").setAttribute("href", "/web-projekt/oldalak/profil.php?id="+getCookie("userId"));
+                }else{
+                    setCookie("userId", "", -1);
+                    setCookie("token", "",-1);
+                    sessionStorage.removeItem("token");
+                }
             }else{
                 alert(result['message']);
             }
@@ -77,25 +63,64 @@ function tokenLogin(userId, token){
     });
 }
 
-function logout(){
-    $.ajax({
-        url: "../php/misc.php",
-        type: "post",
-        data: {type: "deleteToken", user: getCookie("userId")}
-    });
-    deleteCookie("userId");
-    deleteCookie("token");
-    sessionStorage.clear("token");
-    window.location.href("../index.html");
+function checkCookie() {
+    let userId = getCookie("userId");
+    if (userId != "") tokenLogin(userId, getCookie("token"));
 }
 
+function tokenLogin(userId, token){
+    $.ajax({
+        url: "/web-projekt/php/tokenLogin.php",
+        type: "get",
+        data: {userId: userId, token: token},
+        success: function(result){
+            if(result['status'] == 0){
+                document.getElementById("profileC").classList.remove("hidden");
+                document.getElementById("loginC").classList.add("hidden");
+                document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
+                return true;
+            }else{
+                alert(result['message']);
+            }
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+            console.error(status);
+        }
+    });
+    return false;
+}
+
+function logout(){
+    $.ajax({
+        url: "/web-projekt/php/getLogout.php",
+        type: "get",
+        data: {user: getCookie("userId")},
+        success: function(result){
+            alert("asd1");
+        if(result['status'] == 0){
+            alert("asd2");
+            deleteCookie("userId");
+            deleteCookie("token");
+            sessionStorage.clear("token");
+            window.location.href("/web-projekt");
+        }
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+            console.error(status);
+        }
+    });
+}
+
+//get param from url
 function get(name){
     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
         return decodeURIComponent(name[1]);
 }
 
 function viewprofile(profileId){
-    window.location.href ="../oldalak/profil.php?id="+profileId;
+    window.location.href ="/web-projekt/oldalak/profil.php?id="+profileId;
 }
 
 function serachBar(main){

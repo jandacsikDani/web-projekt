@@ -3,13 +3,12 @@ document.querySelector(".sign").addEventListener("click", () => {
     let password = document.getElementById("password").value;
     let stayin = document.getElementById("stayin").checked;
     $.ajax({
-        url: "../php/login.php",
+        url: "/web-projekt/php/login.php",
         type: "post",
         data: {username: username, password: password, keepLogin: stayin},
         success: function(result){
             if(result['status'] == 0){
-                setCookie("userId", result['userid'], 1);
-                sessionStorage.setItem("token", result['token']);
+                sessionStorage.setItem("token", result['session']);
                 window.location.href = "../";
             }else{
                 alert(result['message']);

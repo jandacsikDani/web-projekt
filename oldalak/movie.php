@@ -49,20 +49,20 @@ if(isset($_POST['save'])) {
 </head>
 <body onload="movieLoad()">
     <header>
-        <a href="../index.html" class="logo">FFórum</a>
+        <a href="/web-projekt" class="logo">FFórum</a>
         <nav class="navbar">
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="../index.html" class="nav-link">Kezdőlap</a>
+                    <a href="/web-projekt" class="nav-link">Kezdőlap</a>
                 </li>
                 <li class="nav-item">
-                    <a href="ertekelesek.html" class="nav-link">Értékelések</a>
+                    <a href="/web-projekt/oldalak/ertekelesek.html" class="nav-link">Értékelések</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profiles.html" class="nav-link">Felhasználók</a>
+                    <a href="/web-projekt/oldalak/profiles.html" class="nav-link">Felhasználók</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">Bejelentkezés</a>
+                    <a href="/web-projekt/oldalak/login.html" class="nav-link">Bejelentkezés</a>
                 </li>
                 <li>
                     <div class="search">

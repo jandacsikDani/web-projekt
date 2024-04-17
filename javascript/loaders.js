@@ -1,7 +1,7 @@
 function profilesLoad(){
     checkSession();
     $.ajax({
-        url: "../php/getAllProfiles.php",
+        url: "/web-projekt/php/getAllProfiles.php",
         type: "get",
         success: function(result){
             var users = new Array();
@@ -47,7 +47,7 @@ function profilesLoad(){
 
 function indexLoad(){
     $.ajax({
-        url: "php/getIndexMovies.php",
+        url: "/web-projekt/php/getIndexMovies.php",
         type: "get",
         success: function(result){
             var movies = new Array();
@@ -81,13 +81,14 @@ function indexLoad(){
             console.error(status);
         }
     });
+    checkSession();
 }
 
 function movieLoad(){
     const movieId = get("id");
     const userId = getCookie("userId");
     $.ajax({
-        url: "../php/getMovieDetails.php",
+        url: "/web-projekt/php/getMovieDetails.php",
         type: "get",
         data: {id: movieId},
         success: function(result){
@@ -188,7 +189,7 @@ function profileLoad(){
     checkSession();
     const profileId = get('id');
     $.ajax({
-        url: "../php/getProfileDetails.php",
+        url: "/web-projekt/php/getProfileDetails.php",
         type: "get",
         data: {id: profileId},
         success: function(result){
