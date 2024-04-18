@@ -28,9 +28,6 @@ function deleteCookie(cname) {
 function movie(movieId){
     window.location.href = "/web-projekt/oldalak/movie.php?id="+movieId;
 }
-/*function movie(movieId){
-    window.location.href = "movie.php?id="+movieId;
-}*/
 
 function viewProfile(profileId){
     window.location.href ="/web-projekt/oldalak/profil.php?id="+profileId;
@@ -52,8 +49,6 @@ function checkSession(){
                     setCookie("token", "",-1);
                     sessionStorage.removeItem("token");
                 }
-            }else{
-                alert(result['message']);
             }
         },
         error: function(xhr, status, error){
@@ -78,7 +73,6 @@ function tokenLogin(userId, token){
                 document.getElementById("profileC").classList.remove("hidden");
                 document.getElementById("loginC").classList.add("hidden");
                 document.getElementById("profile").setAttribute("href", "oldalak/profil.php?id="+userId);
-                return true;
             }else{
                 alert(result['message']);
             }
@@ -88,7 +82,6 @@ function tokenLogin(userId, token){
             console.error(status);
         }
     });
-    return false;
 }
 
 function logout(){
@@ -97,14 +90,14 @@ function logout(){
         type: "get",
         data: {user: getCookie("userId")},
         success: function(result){
-            alert("asd1");
-        if(result['status'] == 0){
-            alert("asd2");
-            deleteCookie("userId");
-            deleteCookie("token");
-            sessionStorage.clear("token");
-            window.location.href("/web-projekt");
-        }
+            if(result['status'] == 0){
+                deleteCookie("userId");
+                deleteCookie("token");
+                sessionStorage.clear("token");
+                window.location.href("/web-projekt");
+            }else{
+                alert(result['message']);
+            }
         },
         error: function(xhr, status, error){
             console.error(error);
@@ -198,4 +191,90 @@ function postNewComment(){
             console.error(status);
         }
     });
+}
+
+function filter(elementId){
+    document.getElementById(elementId).classList.toggle("active");
+    var elements = new Array();
+    elements = document.getElementsByClassName('active');
+    var filters = new Array();
+    for (let i = 0; i < elements.length; i++) {
+        filters.push(elements[i].id);
+    }
+    if(filters != undefined){
+        $.ajax({
+            url: "/web-projekt/php/getFilteredMovies.php",
+            type: "get",
+            data: {filter: filters},
+            success: function(result){
+                if(result['status'] == 0){
+                    document.getElementsByClassName('movies')[0].innerHTML = "";
+                    for (let i = 0; i < result['content'].length; i++) {
+                        var movieCell = document.createElement("div");
+                        movieCell.className = "movie-cell";
+                        movieCell.id = result['content'][i]['id'];
+                        movieCell.setAttribute("onclick","movie(this.id)");
+            
+                        var movieLink = document.createElement("a");
+                        movieLink.className = "movie-item";
+            
+                        var movieImage = document.createElement("img");
+                        movieImage.className = "posters";
+                        movieImage.src = result['content'][i]['image'];
+                        movieImage.alt = "Description of the image";
+                        movieLink.appendChild(movieImage);
+            
+                        var movieTitle = document.createElement("p");
+                        movieTitle.textContent = result['content'][i]['title'];
+                        movieLink.appendChild(movieTitle);
+            
+                        movieCell.appendChild(movieLink);
+            
+                        document.getElementsByClassName("movies")[0].appendChild(movieCell);
+                    }
+                }else{
+                    document.getElementsByClassName('movies')[0].innerHTML = "";
+        $.ajax({
+            url: "/web-projekt/php/getIndexMovies.php",
+            type: "get",
+            success: function(result){
+                var movies = new Array();
+                movies = result;
+                for (let i = 0; i < movies.length; i++) {
+                    var movieCell = document.createElement("div");
+                    movieCell.className = "movie-cell";
+                    movieCell.id = movies[i]['id'];
+                    movieCell.setAttribute("onclick","movie(this.id)");
+                
+                    var movieLink = document.createElement("a");
+                    movieLink.className = "movie-item";
+                
+                    var movieImage = document.createElement("img");
+                    movieImage.className = "posters";
+                    movieImage.src = movies[i]['image'];
+                    movieImage.alt = "Description of the image";
+                    movieLink.appendChild(movieImage);
+                
+                    var movieTitle = document.createElement("p");
+                    movieTitle.textContent = movies[i]['title'];
+                    movieLink.appendChild(movieTitle);
+                
+                    movieCell.appendChild(movieLink);
+                
+                    document.getElementsByClassName("movies")[0].appendChild(movieCell);
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+    }
 }

@@ -208,6 +208,9 @@ main{
 .genre-btns:hover {
     background-color: #067E94;
 }
+.genre-btns.active {
+    background-color: #067E94;
+}
 
 #catergories-title{
     padding-top: 25px;

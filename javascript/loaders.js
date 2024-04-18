@@ -164,6 +164,7 @@ function movieLoad(){
             console.error(status);
         }
     });
+    checkSession();
     if(userId != "" || userId != null){
         $.ajax({
             url: "../php/getSession.php",
@@ -186,7 +187,6 @@ function movieLoad(){
 }
 
 function profileLoad(){
-    checkSession();
     const profileId = get('id');
     $.ajax({
         url: "/web-projekt/php/getProfileDetails.php",
@@ -208,19 +208,36 @@ function profileLoad(){
         type: "get",
         data: {id: profileId},
         success: function(result){
-            document.getElementById("review").innerHTML = result[0]['review'];
-            document.getElementById("comment").innerHTML = result[0]['comment'];
-            if(profileId == getCookie("userId")){
-                document.getElementById("profile").setAttribute("href", "");
-                document.getElementById("profile").innerHTML = "Kijelentkezés";
-                document.getElementById("profile").setAttribute("onclick","logout()");
-            }
+            document.getElementById("comment").innerHTML = result['comment'];
+            document.getElementById("review").innerHTML = result['rate'];
         },
         error: function(xhr, status, error){
             console.error(error);
             console.error(status);
         }
-    });
+    }); 
+    if(get("id") == getCookie("userId")){
+        $.ajax({
+            url: "/web-projekt/php/getSession.php",
+            type: "get",
+            data: {userId: getCookie("userId")},
+            success: function(result){
+                if(result['status'] == 0){
+                    if(getCookie("userId") == result['userId'] && sessionStorage.getItem("token") == result['session']){
+                        document.getElementById("profile").setAttribute("href", "");
+                        document.getElementById("profile").innerHTML = "Kijelentkezés";
+                        document.getElementById("profile").setAttribute("onclick","logout()");
+                        document.getElementById("profileC").classList.remove("hidden");
+                        document.getElementById("loginC").classList.add("hidden");
+                    }
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+    }
 }
 
 function searchResultLoad(){

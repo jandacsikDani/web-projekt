@@ -36,16 +36,16 @@ if(isset($_POST['save'])) {
 <head>
     <meta charset="UTF-8">
     <title>MovieTamplate</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/web-projekt/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="../kepek/logo.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/movie.css">
-    <script src="../javascript/menu.js" defer></script>
-    <script src="../javascript/loaders.js" defer></script>
-    <script src="../javascript/func.js" defer></script>
+    <link rel="shortcut icon" href="/web-projekt/kepek/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="/web-projekt/css/movie.css">
+    <script src="/web-projekt/javascript/menu.js" defer></script>
+    <script src="/web-projekt/javascript/loaders.js" defer></script>
+    <script src="/web-projekt/javascript/func.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
-    <script src="../javascript/rating.js" defer></script>
+    <script src="/web-projekt/javascript/rating.js" defer></script>
 </head>
 <body onload="movieLoad()">
     <header>
@@ -61,8 +61,11 @@ if(isset($_POST['save'])) {
                 <li class="nav-item">
                     <a href="/web-projekt/oldalak/profiles.html" class="nav-link">Felhasználók</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="loginC">
                     <a href="/web-projekt/oldalak/login.html" class="nav-link">Bejelentkezés</a>
+                </li>
+                <li class="nav-item hidden" id="profileC">
+                    <a href="#" class="nav-link" id="profile">Saját profilom</a>
                 </li>
                 <li>
                     <div class="search">

@@ -1,4 +1,5 @@
 <?php
+include_once "conn.php";
 $userId = $_GET['user'];
 $sql = "UPDATE users SET token = '', session = '' WHERE id = '$userId';";
 echo json_encode(["asd"=>"asd"]);
