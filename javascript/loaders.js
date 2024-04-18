@@ -43,6 +43,7 @@ function profilesLoad(){
             console.error(status);
         }
     });
+    serachBar();
 }
 
 function indexLoad(){
@@ -82,6 +83,7 @@ function indexLoad(){
         }
     });
     checkSession();
+    serachBar();
 }
 
 function movieLoad(){
@@ -184,6 +186,7 @@ function movieLoad(){
             }
         });
     }
+    serachBar();
 }
 
 function profileLoad(){
@@ -238,6 +241,11 @@ function profileLoad(){
             }
         });
     }
+    serachBar();
+}
+
+function ratingsLoad(){
+    
 }
 
 function searchResultLoad(){

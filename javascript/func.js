@@ -116,31 +116,28 @@ function viewprofile(profileId){
     window.location.href ="/web-projekt/oldalak/profil.php?id="+profileId;
 }
 
-function serachBar(main){
-    var url;
-    if(main){
-        url = "php/movies.php";
-    }else{
-        url = "../php/movies.php";
-    }
-    var data = new Array();
+function serachBar(){
     $.ajax({
-        url: url,
-        type: "post",
-        async: false,
+        url: "/web-projekt/php/getSearchBar.php",
+        type: "get",
         success: function(result){
-            data = JSON.parse(result);
+            if(result['status'] == 0){
+                const searchDiv = document.getElementsByClassName('search')[0];
+                var datalist = document.createElement('datalist');
+                datalist.setAttribute("id", "searchBar");
+                for (let i = 0; i < result["searchresult"].length; i++) {
+                    var option = document.createElement('option');
+                    option.textContent = result["searchresult"][i]['title'];
+                    datalist.appendChild(option);
+                }
+                searchDiv.appendChild(datalist);
+            }
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+            console.error(status);
         }
     });
-    const searchDiv = document.getElementsByClassName('search')[0];
-    var datalist = document.createElement('datalist');
-    datalist.setAttribute("id", "searchBar");
-    for (let i = 0; i < data.length; i++) {
-        var option = document.createElement('option');
-        option.textContent = data[i]['title'];
-        datalist.appendChild(option);
-    }
-    searchDiv.appendChild(datalist);
 }
 
 function gotoMovie(main){
@@ -277,4 +274,17 @@ function filter(elementId){
             }
         });
     }
+}
+
+function changeUserDataButton(){
+    document.getElementById("change-data").classList.toggle("open");
+}
+function uploadUserData(){
+    var username;
+    if (document.getElementById("username").value != "") username = document.getElementById("username").value;
+    
+}
+
+function uploadUserPic(){
+
 }
