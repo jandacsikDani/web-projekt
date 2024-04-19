@@ -65,7 +65,7 @@
                     <p class="desc">Hozzászólások</p>
                 </div>
             </div>
-            <div class="change">
+            <div class="change hidden">
                 <button class="sign" onclick="changeUserDataButton()">Felhasználói adatok kezelése</button>
             </div>
             <div id="change-data">
