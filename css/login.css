@@ -1,4 +1,3 @@
-
 .form-container {
     margin: auto;
     margin-top: 40px;
@@ -33,7 +32,7 @@
     margin-bottom: 4px;
 }
 
-.input-group:last-of-type input:last-of-type{
+.input-group:last-of-type input:last-of-type {
     margin-bottom: 1rem;
 }
 
@@ -54,15 +53,17 @@
     justify-content: flex-end;
     font-size: 0.75rem;
     line-height: 1rem;
-    color: rgba(156, 163, 175,1);
+    color: rgba(156, 163, 175, 1);
     margin: 8px 0 14px 0;
 }
-.forgot a,.signup a {
+.forgot a,
+.signup a {
     color: rgba(243, 244, 246, 1);
     text-decoration: none;
     font-size: 14px;
 }
-.forgot a:hover, .signup a:hover {
+.forgot a:hover,
+.signup a:hover {
     text-decoration: underline rgba(167, 139, 250, 1);
 }
 .sign {
@@ -70,7 +71,7 @@
     cursor: pointer;
     display: block;
     width: 100%;
-    background: linear-gradient(135deg, #067E94, #9732A7);
+    background: linear-gradient(135deg, #067e94, #9732a7);
     padding: 0.75rem;
     text-align: center;
     color: white;
@@ -79,8 +80,8 @@
     font-weight: 600;
 }
 
-.sign:hover{
-    background: linear-gradient(135deg, #9732A7, #067E94);
+.sign:hover {
+    background: linear-gradient(135deg, #9732a7, #067e94);
     box-shadow: 0 0 5px rgba(255, 255, 255);
 }
 .signup {
@@ -89,4 +90,3 @@
     line-height: 1rem;
     color: rgba(156, 163, 175, 1);
 }
-

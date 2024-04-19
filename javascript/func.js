@@ -231,41 +231,41 @@ function filter(elementId){
                     }
                 }else{
                     document.getElementsByClassName('movies')[0].innerHTML = "";
-        $.ajax({
-            url: "/web-projekt/php/getIndexMovies.php",
-            type: "get",
-            success: function(result){
-                var movies = new Array();
-                movies = result;
-                for (let i = 0; i < movies.length; i++) {
-                    var movieCell = document.createElement("div");
-                    movieCell.className = "movie-cell";
-                    movieCell.id = movies[i]['id'];
-                    movieCell.setAttribute("onclick","movie(this.id)");
-                
-                    var movieLink = document.createElement("a");
-                    movieLink.className = "movie-item";
-                
-                    var movieImage = document.createElement("img");
-                    movieImage.className = "posters";
-                    movieImage.src = movies[i]['image'];
-                    movieImage.alt = "Description of the image";
-                    movieLink.appendChild(movieImage);
-                
-                    var movieTitle = document.createElement("p");
-                    movieTitle.textContent = movies[i]['title'];
-                    movieLink.appendChild(movieTitle);
-                
-                    movieCell.appendChild(movieLink);
-                
-                    document.getElementsByClassName("movies")[0].appendChild(movieCell);
-                }
-            },
-            error: function(xhr, status, error){
-                console.error(error);
-                console.error(status);
-            }
-        });
+                    $.ajax({
+                        url: "/web-projekt/php/getIndexMovies.php",
+                        type: "get",
+                        success: function(result){
+                            var movies = new Array();
+                            movies = result;
+                            for (let i = 0; i < movies.length; i++) {
+                                var movieCell = document.createElement("div");
+                                movieCell.className = "movie-cell";
+                                movieCell.id = movies[i]['id'];
+                                movieCell.setAttribute("onclick","movie(this.id)");
+                            
+                                var movieLink = document.createElement("a");
+                                movieLink.className = "movie-item";
+                            
+                                var movieImage = document.createElement("img");
+                                movieImage.className = "posters";
+                                movieImage.src = movies[i]['image'];
+                                movieImage.alt = "Description of the image";
+                                movieLink.appendChild(movieImage);
+                            
+                                var movieTitle = document.createElement("p");
+                                movieTitle.textContent = movies[i]['title'];
+                                movieLink.appendChild(movieTitle);
+                            
+                                movieCell.appendChild(movieLink);
+                            
+                                document.getElementsByClassName("movies")[0].appendChild(movieCell);
+                            }
+                        },
+                        error: function(xhr, status, error){
+                            console.error(error);
+                            console.error(status);
+                        }
+                    });
                 }
             },
             error: function(xhr, status, error){
@@ -279,12 +279,65 @@ function filter(elementId){
 function changeUserDataButton(){
     document.getElementById("change-data").classList.toggle("open");
 }
+
 function uploadUserData(){
-    var username;
-    if (document.getElementById("username").value != "") username = document.getElementById("username").value;
-    
+    if(confirm("Biztos frissíteni szeretnéd az alábbi adatokat?")){
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var repassword = document.getElementById("repassword").value;
+        if(password == repassword){
+            $.ajax({
+                url: "/web-projekt/php/postUpdateUserData.php",
+                type: "post",
+                data: {username: username, email: email, password: password},
+                success: function(result){
+                    if(result['status'] == 0){
+                        alert("Az adatok sikeresen frissítésre kerültek.");
+                        document.getElementById("username").value = "";
+                        document.getElementById("email").value = "";
+                        document.getElementById("password").value = "";
+                        document.getElementById("repassword").value = "";
+                    }else{
+                        alert("Az adatok frissítése közben hiba lépett fel, kérjük próbáld újra később.");
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error(error);
+                    console.error(status);
+                }
+            });
+        }else{
+            alert("Nem eggyznek a jelszavak");
+        }
+    }
 }
 
 function uploadUserPic(){
+    var userid = getCookie("userId");
+    var formData = new FormData();
+    var fileInput = document.getElementById("profilepic");
+    formData.append('file', fileInput.files[0]);
 
+
+    /*$.ajax({
+        url: "/web-projekt/php/postUploadUserPic.php",
+        type: "post",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: {file: formData},
+        success: function(result){
+            if(result["status"] == 0){
+                alert("ok " + result["message"]);
+            }else{
+                alert("nemjo " + result["message"]);
+            }
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+            console.error(status);
+        }
+    });*/
 }

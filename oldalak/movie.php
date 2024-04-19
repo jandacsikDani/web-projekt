@@ -27,9 +27,6 @@ if(isset($_POST['save'])) {
     exit(json_encode(array('id' => $userId)));
 }
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="hu">

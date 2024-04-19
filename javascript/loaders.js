@@ -1,5 +1,6 @@
 function profilesLoad(){
     checkSession();
+    const userId = getCookie("userId");
     $.ajax({
         url: "/web-projekt/php/getAllProfiles.php",
         type: "get",
@@ -43,6 +44,25 @@ function profilesLoad(){
             console.error(status);
         }
     });
+    if(userId != "" || userId != null){
+        $.ajax({
+            url: "../php/getSession.php",
+            type: "get",
+            data: {userId: userId},
+            success: function(result){
+                if(result['status'] == 0){
+                    if(sessionStorage.getItem('token') == result['session']){
+                        document.getElementById('please-login').style.display = "none";
+                        document.getElementsByClassName('comment-box')[0].style.display = "block";
+                    }
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+    }
     serachBar();
 }
 
@@ -110,7 +130,6 @@ function movieLoad(){
         type: "get",
         data: {id: movieId},
         success: function(result){
-            var comments = new Array();
             comments = result;
             for (let i = 0; i < comments.length; i++) {
             var actComment = document.createElement("div");
@@ -129,8 +148,8 @@ function movieLoad(){
             userDetailDiv.appendChild(userImgDiv);
         
             var userImg = document.createElement("img");
-            userImg.src = "../kepek/profile-pic-example.jpg";
-            userImg.alt = "Description of the image";
+            userImg.src = result[i]["profileimage"];
+            userImg.alt = result[i]["username"]+" profilkélpe";
             userImgDiv.appendChild(userImg);
         
             var userMetaDiv = document.createElement("div");
@@ -139,14 +158,14 @@ function movieLoad(){
         
             var nameDiv = document.createElement("div");
             nameDiv.className = "name";
-            nameDiv.textContent = "@"+comments[i]['username'];
-            nameDiv.id = comments[i]['id'];
+            nameDiv.textContent = "@"+result[i]['username'];
+            nameDiv.id = result[i]['id'];
             nameDiv.setAttribute("onclick", "viewprofile(this.id)");
             userMetaDiv.appendChild(nameDiv);
         
             var dayDiv = document.createElement("div");
             dayDiv.className = "day";
-            dayDiv.textContent = comments[i]['commentdate']
+            dayDiv.textContent = result[i]['commentdate']
             userMetaDiv.appendChild(dayDiv);
         
             var commentTextDiv = document.createElement("div");
@@ -154,7 +173,7 @@ function movieLoad(){
             listDiv.appendChild(commentTextDiv);
         
             var commentP = document.createElement("p");
-            commentP.textContent = comments[i]['content'];
+            commentP.textContent = result[i]['content'];
             commentTextDiv.appendChild(commentP);
         
             document.getElementsByClassName("comment-session")[0].appendChild(actComment);

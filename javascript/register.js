@@ -14,10 +14,10 @@ document.querySelector(".sign").addEventListener("click", () => {
                     setCookie("userId", result['userid'], 1);
                     setCookie("token", result['token'], 1);
                     sessionStorage.setItem("token", result['session']);
-                    alert(back['message']);
+                    alert(result['message']);
                     window.location.href = "../";
                 }else{
-                    alert(back['message']);
+                    alert(result['message']);
                 }
             },
             error: function(xhr, status, error){
