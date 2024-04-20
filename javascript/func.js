@@ -314,30 +314,25 @@ function uploadUserData(){
 }
 
 function uploadUserPic(){
-    var userid = getCookie("userId");
-    var formData = new FormData();
-    var fileInput = document.getElementById("profilepic");
-    formData.append('file', fileInput.files[0]);
-
-
-    /*$.ajax({
-        url: "/web-projekt/php/postUploadUserPic.php",
-        type: "post",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: {file: formData},
-        success: function(result){
-            if(result["status"] == 0){
-                alert("ok " + result["message"]);
-            }else{
-                alert("nemjo " + result["message"]);
+    if(confirm("Biztos megszeretnéd változtatni a profilképed?")){
+        var file_data = $('#file').prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('file', file_data);                      
+        $.ajax({
+            url: '/web-projekt/php/postUploadUserPic.php',
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,                         
+            type: 'post',
+            success: function(result){
+                alert(result['message']);
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
             }
-        },
-        error: function(xhr, status, error){
-            console.error(error);
-            console.error(status);
-        }
-    });*/
+        });
+    }
 }

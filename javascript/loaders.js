@@ -185,6 +185,14 @@ function movieLoad() {
                     .getElementsByClassName("comment-session")[0]
                     .appendChild(actComment);
             }
+            $.ajax({
+                url: "/web-projekt/php/getProfileDetails.php",
+                type: "get",
+                data: {id: userId},
+                success: function(result){
+                    document.getElementById("userpic").src = result[0]['profileimage'];
+                }
+            });
             serachBar();
         },
         error: function (xhr, status, error) {
