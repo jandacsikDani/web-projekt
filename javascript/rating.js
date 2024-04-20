@@ -1,75 +1,121 @@
-var ratedIndex = -1, userId = getCookie('userId');
-
 $(document).ready(function () {
-    resetColors();
-
-    if(localStorage.getItem('ratedIndex') != null){//ha mar egyszer ertekelt akkor maradjon kitoltve
-        fillStars(parseInt(localStorage.getItem('ratedIndex')));
-    }
-
-    $('.rating-stars .fa-star').on('click', function(){
+    
+    const movieId = get('id');
+    const userId = getCookie("userId");
+    var ratedIndex = parseInt(getCookie('ratedIndex_' + movieId));
+    
+    getFromDbAvarage();
+    getFromDbUserRating();
+    
+    $('.rating-stars .fa-star').on('click', function() {
         ratedIndex = parseInt($(this).data('index'));
-        localStorage.setItem('ratedIndex', ratedIndex); //cookie?
-        $('.rating-submit').on('click', function(){
-            saveToDb();
-        })
-    })
+        
+        setCookie('ratedIndex_' + movieId, ratedIndex, 30); 
+    });
 
+    
+    $('.rating-submit').on('click', function() {
+        saveToDb();
+    });
 
-    $('.rating-stars .fa-star').mouseover(function () {
+    
+    $('.rating-stars .fa-star').mouseover(function() {
         resetColors();
-        var currentIndex = parseInt($(this).data('index'))
+        var currentIndex = parseInt($(this).data('index'));
         fillStars(currentIndex);
-
     });
-
-    $('.rating-stars .fa-star').mouseleave(function () {
+    $('.rating-stars .fa-star').mouseleave(function() {
         resetColors();
-        if(ratedIndex != -1){
+        if (ratedIndex !== -1) {
             fillStars(ratedIndex);
-           
-
         }
     });
 
-    function fillStars(value){
-        for (var i= 0; i <= value; i++){
-            $('.rating-stars .fa-star:eq('+i+')').css('color', '#9732A7');
+    function fillStars(value) {
+        $('.rating-stars .fa-star').css('color', 'gray');
+        for (var i = 0; i <= value; i++) {
+            $('.rating-stars .fa-star:eq(' + i + ')').css('color', '#9732A7');
         }
-
     }
 
-    function resetColors(){
+    function resetColors() {
         $('.rating-stars .fa-star').css('color', 'gray');
     }
 
     function saveToDb() {
-        
-        var currentURL = window.location.href;
-    
-        // id kinyerese
-        var urlParams = new URLSearchParams(window.location.search);
-        var movieId = urlParams.get('id');
-    
-        
         $.ajax({
-            url: 'movie.php?id=' + movieId,
-            method: 'POST', 
+            url: "/web-projekt/oldalak/movie.php?id=" + movieId,
+            method: 'POST',
             data: {
                 save: 1,
                 userId: userId,
+                movieId: movieId,
                 ratedIndex: ratedIndex
-                
             },
-            success: function(r) {
-                console.log("Sikeresen elmentve!.");
-               
-                
+            success: function(response) {
+                console.log("Siker!");
             },
             error: function(xhr, status, error) {
                 
             }
         });
     }
+
+    function getFromDbAvarage() {
+        $.ajax({
+            url: "/web-projekt/php/getMovieRating.php",
+            method: 'GET',
+            data: {
+                userId: userId,
+                movieId: movieId,
+            },
+            success: function(response) {
+                
+                var averageRating = response.avarageRating;
+
+                //console.log("Atlag ertekeles: " + averageRating);
+
+                fillStarsFromAverage(averageRating);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function getFromDbUserRating() {
+        $.ajax({
+            url: "/web-projekt/php/getMovieRatingUser.php", 
+            method: 'GET',
+            data: {
+                userId: userId, 
+                movieId: movieId, 
+            },
+            success: function(response) {
+                
+                var userRating = response.userRating;
+
+                //console.log("Felhasznalo ertekeles: " + userRating);
+
+                fillStars(userRating);
+                
+
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching user rating:", error);
+            }
+        });
+    }
     
+    function fillStarsFromAverage(averageRating) {
+        var roundedRating = Math.round(averageRating);
+       
+        $('.intro-rating .fa-star').each(function(index) {
+            if (index < roundedRating) {
+                $(this).removeClass('unchecked').addClass('checked');
+            } else {
+                $(this).removeClass('checked').addClass('unchecked');
+            }
+        });
+    }
 });

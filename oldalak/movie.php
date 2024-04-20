@@ -5,19 +5,20 @@ header("Content-type: text/html; charset=UTF-8");
 if(isset($_POST['save'])) {
     $userId = $_POST['userId'];
     $ratedIndex = $_POST['ratedIndex'];
+    $movieId = $_POST['movieId'];
     $ratedIndex++;
 
     $userId = mysqli_real_escape_string($conn, $userId);
     $ratedIndex = mysqli_real_escape_string($conn, $ratedIndex);
     
-    $query = "SELECT COUNT(*) FROM ratings WHERE user_id = '$userId'";
+    $query = "SELECT COUNT(*) FROM ratings WHERE user_id = '$userId' AND movie_id='$movieId'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result);
 
     if ($row[0] > 0) {
-        $query = "UPDATE ratings SET rating = '$ratedIndex' WHERE user_id = '$userId'";
+        $query = "UPDATE ratings SET rating = '$ratedIndex' WHERE user_id = '$userId' AND movie_id='$movieId'";
     } else {
-        $query = "INSERT INTO ratings (user_id, rating) VALUES ('$userId', '$ratedIndex')";
+        $query = "INSERT INTO ratings (user_id, movie_id, rating) VALUES ('$userId', '$movieId', '$ratedIndex')";
     }
     
     $success = mysqli_query($conn, $query);
@@ -87,11 +88,11 @@ if(isset($_POST['save'])) {
             </div>
 
             <div class="intro-rating">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
             </div>
 
             <div class="intro-categories">
