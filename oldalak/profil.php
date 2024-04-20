@@ -98,11 +98,9 @@
                 </div>
                 <div>
                     <div class="input-group">
-                        <form id="uplodForm" action="/web-projekt/php/postUploadUserPic.php" method="post" enctype="multipart/form-data">
                             <label for="profilepic">Profilkép</label>
                             <input type="file" id="file" name="file">
-                            <button class="sign" type="submit">Profilkép feltöltése</button>
-                        </form>
+                        <button class="sign" onclick="uploadUserPic()">Profilkép feltöltése</button>
                     </div>
                 </div>
             </div>

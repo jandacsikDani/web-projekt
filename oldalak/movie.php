@@ -156,7 +156,7 @@ if(isset($_POST['save'])) {
             <div class="comment-box">
                 <div class="user">
                     <div class="img">
-                        <img  src="../kepek/profile-pic-example.jpg" alt="Description of the image">
+                        <img  src="" alt="Description of the image" id="userpic">
                     </div>
                     <div class="name">
                         Név

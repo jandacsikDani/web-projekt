@@ -251,3 +251,26 @@ main {
     margin-top: 10px;
     font-weight: bold;
 }
+
+#new-movie{
+display: flex;
+justify-content: center;
+}
+#new-movie a{
+    padding: 10px;
+    background-color: orange;
+    border: 2px solid orangered;
+    border-radius: 10px;
+    color: #10141e;
+    width: fit-content;
+    transition: transform .2s ease;
+}
+#new-movie a:hover{
+    transform: translateY(-4px);
+}
+#kat{
+    display: grid;
+    margin-top:10px;
+    column-gap: 10px;
+    grid-template-columns: 100px 1fr;
+}
