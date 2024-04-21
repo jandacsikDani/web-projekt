@@ -286,8 +286,115 @@ function profileLoad() {
     serachBar();
 }
 
-function ratingsLoad() {}
+
 
 function searchResultLoad() {
     serachBar();
 }
+
+function loadTopGenres() {
+    
+    $.ajax({
+        url: '/web-projekt/php/getTopGenres.php', 
+        method: 'GET',
+        success: function(response) {
+            
+            const genres = response.genres;
+
+            const reviewsContainer = document.querySelector('.reviews-container');
+
+            reviewsContainer.innerHTML = '';
+
+            genres.forEach(genre => {
+                
+                const reviewCategoryDiv = document.createElement('div');
+                reviewCategoryDiv.className = 'review-categories';
+
+                
+                const genreTitleDiv = document.createElement('div');
+                genreTitleDiv.className = 'review-title';
+                const genreTitleP = document.createElement('p');
+                genreTitleP.textContent = `Legjobban Értékelt ${genre} Filmek`; 
+                genreTitleDiv.appendChild(genreTitleP);
+
+                
+                reviewCategoryDiv.appendChild(genreTitleDiv);
+
+                
+                const reviewElementsDiv = document.createElement('div');
+                reviewElementsDiv.className = 'review-elements';
+
+                
+                $.ajax({
+                    url: "/web-projekt/php/getTopMoviesByGenre.php",
+                    method: 'GET',
+                    data: {
+                        genre: genre
+                    },
+                    success: function(response) {
+                        
+                        const movies = response.movies;
+
+                        
+                        movies.forEach(movie => {
+                            
+                            const movieLink = document.createElement('a');
+                            movieLink.href = `movie.php?id=${movie.id}`; 
+
+                            
+                            const movieDiv = document.createElement('div');
+                            
+                            const movieImage = document.createElement('img');
+                            movieImage.className = 'posters';
+                            movieImage.src = '../' + movie.image;
+                            movieImage.alt = `A ${movie.title} képe`;
+                            movieDiv.appendChild(movieImage);
+                            
+                            const movieTitleP = document.createElement('p');
+                            movieTitleP.textContent = movie.title; 
+                            movieDiv.appendChild(movieTitleP);
+
+                            const reviewRatingDiv = document.createElement('div');
+                            reviewRatingDiv.className = 'review-rating';
+
+                            
+                            for (let i = 0; i < 5; i++) {
+                                const starSpan = document.createElement('span');
+                                starSpan.className = 'fa fa-star';
+
+                                
+                                if (i < movie.rating) {
+                                    starSpan.classList.add('checked');
+                                } else {
+                                    starSpan.classList.add('unchecked');
+                                }
+
+                                
+                                reviewRatingDiv.appendChild(starSpan);
+                            }
+
+                            movieDiv.appendChild(reviewRatingDiv);
+                            movieLink.appendChild(movieDiv);
+                            reviewElementsDiv.appendChild(movieLink);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(`Hiba genre lekeres kozben ${genre}:`, error);
+                    }
+                });
+          
+                reviewCategoryDiv.appendChild(reviewElementsDiv);         
+                reviewsContainer.appendChild(reviewCategoryDiv);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Hiba genre lekeres kozben:", error);
+        }
+    });
+}
+
+
+
+
+
+
