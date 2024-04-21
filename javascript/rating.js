@@ -54,6 +54,7 @@ $(document).ready(function () {
             },
             success: function(response) {
                 console.log("Siker!");
+                alert("Sikeres Értékelés!");
             },
             error: function(xhr, status, error) {
                 
