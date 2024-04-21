@@ -8,7 +8,7 @@ if(mysqli_num_rows($result)>0){
         $a[] = $row;
     }
 }
-$sql2 = "SELECT COUNT(rates.rate) AS rates FROM rates WHERE rates.userid = '$userId';";
+$sql2 = "SELECT COUNT(ratings.rating) AS rates FROM ratings WHERE ratings.user_id = '$userId';";
 $result2 = mysqli_query($conn, $sql2);
 if(mysqli_num_rows($result2)>0){
     while($row2 = mysqli_fetch_row($result2)){

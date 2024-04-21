@@ -127,7 +127,8 @@ function serachBar(){
                 datalist.setAttribute("id", "searchBar");
                 for (let i = 0; i < result["searchresult"].length; i++) {
                     var option = document.createElement('option');
-                    option.textContent = result["searchresult"][i]['title'];
+                    option.id = result["searchresult"][i]['id'];
+                    option.innerText = result["searchresult"][i]['title'];
                     datalist.appendChild(option);
                 }
                 searchDiv.appendChild(datalist);
