@@ -346,7 +346,7 @@ function loadTopGenres() {
                             
                             const movieImage = document.createElement('img');
                             movieImage.className = 'posters';
-                            movieImage.src = '../' + movie.image;
+                            movieImage.src = '' + movie.image;
                             movieImage.alt = `A ${movie.title} képe`;
                             movieDiv.appendChild(movieImage);
                             

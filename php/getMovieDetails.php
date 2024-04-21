@@ -2,7 +2,7 @@
 include_once "../php/conn.php";
 if(isset($_GET['id'])){
     $movieId = $_GET['id'];
-    $sql = "SELECT title AS title, description AS description, image AS image, `releasedate` AS rd, rating AS rating, coverimage AS coverimage FROM movies WHERE id = '$movieId';";
+    $sql = "SELECT title AS title, description AS description, image AS image, rating AS rating, coverimage AS coverimage FROM movies WHERE id = '$movieId';";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
