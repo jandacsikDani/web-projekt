@@ -11,6 +11,7 @@
     <script src="/web-projekt/javascript/loaders.js" defer></script>
     <script src="/web-projekt/javascript/func.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous" defer></script>
+    <script src="/web-projekt/javascript/rating.js" defer></script>
 
 </head>
 <body onload="profileLoad()">
@@ -57,7 +58,7 @@
             </div>
             <div class="details">
                 <div class="detail-item">
-                    <p class="data" id="review">68</p>
+                    <p class="data" id="review"></p>
                     <p class="desc">Értékelések</p>
                 </div>
                 <div class="detail-item">

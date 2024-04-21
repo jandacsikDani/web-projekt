@@ -70,10 +70,10 @@ $(document).ready(function () {
                 movieId: movieId,
             },
             success: function(response) {
-                
+                console.log(response);
                 var averageRating = response.avarageRating;
 
-                //console.log("Atlag ertekeles: " + averageRating);
+                console.log("Atlag ertekeles: " + averageRating);
 
                 fillStarsFromAverage(averageRating);
             },
@@ -95,9 +95,13 @@ $(document).ready(function () {
                 
                 var userRating = response.userRating;
 
-                //console.log("Felhasznalo ertekeles: " + userRating);
+                console.log("Felhasznalo ertekeles: " + userRating);
 
                 fillStars(userRating);
+
+                var userRatingCount = response.userRatingCount;
+                console.log(userRatingCount);
+                document.getElementById('review').textContent = userRatingCount;
                 
 
             },
@@ -106,6 +110,7 @@ $(document).ready(function () {
             }
         });
     }
+    
     
     function fillStarsFromAverage(averageRating) {
         var roundedRating = Math.round(averageRating);

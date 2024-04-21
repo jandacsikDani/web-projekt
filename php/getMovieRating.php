@@ -30,6 +30,11 @@ if (isset($_GET['userId']) && isset($_GET['movieId'])) {
         $averageRating = $totalRating / $numRatings;
     }
 
+    $updateQuery = "UPDATE movies SET rating = '$averageRating' WHERE id = '$movieId'";
+    mysqli_query($conn, $updateQuery);
+
+   
+
     
     mysqli_close($conn);
     
