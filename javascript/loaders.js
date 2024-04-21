@@ -120,7 +120,7 @@ function movieLoad() {
         data: { id: movieId },
         success: function (result) {
             document.title = result[0]["title"];
-            document.getElementsByClassName("intro")[0].style.backgroundImage = "url(../" + result[0]["coverimage"] + ")";
+            document.getElementsByClassName("intro")[0].style.backgroundImage = "url("+result[0]["coverimage"]+ ")";
             document.getElementsByClassName("intro-title")[0].innerText = result[0]["title"];
             document.getElementsByClassName("desc-title")[0].innerText = result[0]["title"];
             document.getElementsByClassName("desc-script")[0].innerText = result[0]["description"];

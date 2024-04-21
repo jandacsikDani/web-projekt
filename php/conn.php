@@ -14,3 +14,11 @@ ini_set('error_log', $error_log_path);
 header("Content-type: application/json; charset=UTF-8");
 
 $conn = new mysqli("localhost", "root", "", "forum");
+
+function convertString($input) {
+    $normalized = iconv('UTF-8', 'ASCII//TRANSLIT', $input);
+    $noSpaces = str_replace(' ', '', $normalized);
+    $lowercased = strtolower($noSpaces);
+
+    return $lowercased;
+}

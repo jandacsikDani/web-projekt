@@ -244,7 +244,8 @@ main {
 .movie-item img {
     border-radius: 10px;
     height: 250px;
-    width: auto;
+    width: 166px;
+    object-fit: cover;
 }
 
 .movie-item p {
@@ -269,8 +270,15 @@ justify-content: center;
     transform: translateY(-4px);
 }
 #kat{
-    display: grid;
+    
     margin-top:10px;
     column-gap: 10px;
-    grid-template-columns: 100px 1fr;
+    
+}
+#kat fieldset{
+    width: 240px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 200px 50px;
+    padding: 5px;
 }

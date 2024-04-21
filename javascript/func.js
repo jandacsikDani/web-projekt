@@ -336,3 +336,74 @@ function uploadUserPic(){
         });
     }
 }
+
+function addNewMovie(){
+    if(confirm("Biztos az alábbi adatokkal szeretnéd rögíteni a filmet?")){
+        var title = document.getElementById("movietitle").value;
+        var desc = document.getElementById("desc").value;
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        // Szűrjük a bejelölt checkboxokat és összegyűjtjük az értékeket
+        const checkedValues = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked) // csak a bejelölteket tartjuk meg
+            .map(checkbox => checkbox.value); // az értékeket gyűjtjük
+
+        // Összefűzzük az értékeket vesszővel elválasztva
+        const valuesString = checkedValues.join(',');
+        $.ajax({
+            url: "/web-projekt/php/postNewMovie.php",
+            type: "post",
+            async: false,
+            data:{title: title, desc: desc, kat: valuesString},
+            success: function(result){
+                if(result['status'] == 0){
+                    alert(result['message']);
+                }else{
+                    alert(result['message']);
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+        var file_data = $('#mainpic').prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('file', file_data);
+        setCookie("lastmovie", title, 1);
+        $.ajax({
+            url: "/web-projekt/php/postNewMoviePic.php",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,                         
+            type: 'post',
+            success: function(result){
+                alert(result['message']);
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+        var file_data2 = $('#coverpic').prop('files')[0];   
+        var form_data2 = new FormData();                  
+        form_data2.append('file', file_data2);
+        $.ajax({
+            url: "/web-projekt/php/postNewMovieCoverPic.php",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data2,                         
+            type: 'post',
+            success: function(result){
+                alert(result['message']);
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+                console.error(status);
+            }
+        });
+    }
+}

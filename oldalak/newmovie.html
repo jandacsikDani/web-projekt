@@ -57,42 +57,42 @@
                 </div>
                 <div class="input-group">
                     <label for="desc">Film leírása</label>
-                    <textarea name="textarea" cols="30" rows="10" placeholder="Film leírása" id="desc"></textarea>
+                    <textarea name="textarea" cols="30" rows="10" placeholder="Film leírása" id="desc" required></textarea>
                 </div>
                 <div class="input-group">
                     <label for="desc">Poszter kép</label>
-                    <input type="file" name="mainpic" id="mainpic">
+                    <input type="file" name="mainpic" id="mainpic" required>
                 </div>
                 <div class="input-group">
                     <label for="desc">Oldal borítókép</label>
-                    <input type="file" name="coverpic" id="coverpic">
+                    <input type="file" name="coverpic" id="coverpic" required>
                 </div>
                 <div id="kat">
                     <fieldset>
                         <legend>Kategóriák</legend>
                         <label for="action">Akció</label>
-                        <input type="checkbox" id="action">
+                        <input type="checkbox" id="action" value="action">
     
                         <label for="horror">Horror</label>
-                        <input type="checkbox" id="horror">
+                        <input type="checkbox" id="horror" value="horror">
     
                         <label for="fantasy">Fantasy</label>
-                        <input type="checkbox" id="fantasy">
+                        <input type="checkbox" id="fantasy" value="fantasy">
     
                         <label for="sci-fi">Sci-fi</label>
-                        <input type="checkbox" id="sci-fi">
+                        <input type="checkbox" id="sci-fi" class="sci-fi">
     
                         <label for="historical">Történelmi</label>
-                        <input type="checkbox" id="historical">
+                        <input type="checkbox" id="historical" value="historical">
     
                         <label for="drama">Dráma</label>
-                        <input type="checkbox" id="drama">
+                        <input type="checkbox" id="drama" value="drama">
     
                         <label for="adventure">Kaland</label>
-                        <input type="checkbox" id="adventure">
+                        <input type="checkbox" id="adventure" value="adventure">
                     </fieldset>
                 </div>
-                <button class="sign">Film feltöltése</button>
+                <button class="sign" onclick="addNewMovie()">Film feltöltése</button>
     </main>
 </body>
 </html>
