@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <div class="search">
-                        <input class="search-input" type="search" placeholder="Keresés" list="searchBar">
+                        <input class="search-input" type="search" placeholder="Keresés">
                         <span class="search-icon material-symbols-outlined" onclick="gotoMovie()">search</span>
                     </div>
                 </li>
@@ -52,7 +52,7 @@
     <main>
         <div class="profile-container">
             <div class="profile">
-            <img class='profile-pic' src="" alt='Description of the image'>
+            <img class='profile-pic' src="/web-projekt/kepek/default.png" alt='Description of the image'>
                 <p class='full-name'></p>
                 <p class='username'></p>
             </div>
@@ -99,7 +99,7 @@
                 </div>
                 <div>
                     <div class="input-group">
-                            <label for="profilepic">Profilkép</label>
+                            <label>Profilkép</label>
                             <input type="file" id="file" name="file">
                         <button class="sign" onclick="uploadUserPic()">Profilkép feltöltése</button>
                     </div>
